@@ -19,6 +19,7 @@ ambient_light_energy = 0.33
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.858065, 0.513541, 0, -0.513541, 0.858065, 3.26585, 10.9196, 11.4805)
+shadow_enabled = true
 sky_mode = 1
 
 [node name="Floor" type="MeshInstance3D" parent="."]
