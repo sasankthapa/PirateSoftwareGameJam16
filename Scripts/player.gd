@@ -1,9 +1,13 @@
 extends CharacterBody3D
 
 
-const SPEED = 5.0
+const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
+const ACCELERATION = 4.0
 
+@onready var twist_pivot: Node3D = $TwistPivot
+@onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
+@onready var body: Node3D = $body
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -16,7 +20,7 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir := Input.get_vector("A_KEY", "D_KEY", "W_KEY", "S_KEY")
 	var charging := Input.is_key_pressed(KEY_K)
 
 	if charging: # change how the movement works
@@ -24,8 +28,10 @@ func _physics_process(delta: float) -> void:
 		return
 		# charge up animation
 
-		
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	#var direction := (twist_pivot.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	#print(twist_pivot.basis)
+	var direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, body.rotation.y)
+	velocity = lerp(velocity, direction * SPEED, ACCELERATION * delta)
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -34,3 +40,4 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	body.rotation.y = twist_pivot.rotation.y

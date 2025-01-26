@@ -14,6 +14,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if Input.is_action_pressed("W_KEY"):
+		twist_pivot.rotation.y = lerp(twist_pivot.rotation.y, 0.0, 0.1)
 	# process camera controls
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
