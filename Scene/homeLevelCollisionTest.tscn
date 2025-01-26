@@ -1,12 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqfob7bs0kphe"]
+[gd_scene load_steps=2 format=3 uid="uid://ufoxjgb01ioj"]
 
-[ext_resource type="PackedScene" uid="uid://dhk684dnsixmb" path="res://Assets_in_Progress/HomeLevel_01.glb" id="1_lioxf"]
+[ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="1_j8swn"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-
-[node name="HomeLevel_01" parent="StaticBody3D" instance=ExtResource("1_lioxf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.598435, 0, 0.606896)
+[node name="HomeLevel_02" parent="." instance=ExtResource("1_j8swn")]

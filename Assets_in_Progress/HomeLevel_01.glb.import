@@ -34,10 +34,12 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Field": {
-"generate/navmesh": 1
+"generate/occluder": 1
 },
 "PATH:Home_Rock": {
-"generate/navmesh": 1
+"generate/navmesh": 1,
+"generate/occluder": 1,
+"occluder/simplification_distance": 0.11
 }
 }
 }
