@@ -19,10 +19,13 @@ albedo_color = Color(0.918209, 0.440277, 0.260394, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ht8oa"]
 lifetime_randomness = 0.05
+emission_shape_scale = Vector3(2, 2, 2)
 emission_shape = 1
 emission_sphere_radius = 1.0
-angular_velocity_min = -513.1
-angular_velocity_max = -1.60933e-05
+angle_min = -331.0
+angle_max = 209.7
+angular_velocity_min = -104.82
+angular_velocity_max = 720.0
 color = Color(0.938064, 0.862141, 0.945792, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_amj4p"]
@@ -50,7 +53,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1igp0")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="body"]
-transform = Transform3D(0.1, 0, 0, 0, -0.0998379, 0.00569195, 0, -0.00569195, -0.0998379, 0, 0.889102, -0.335612)
+transform = Transform3D(0.1, 0, 0, 0, -0.0998379, 0.00569195, 0, -0.00569195, -0.0998379, 0, 0.884602, -0.256674)
 material_override = SubResource("StandardMaterial3D_8w0yp")
 emitting = false
 amount = 9
@@ -66,11 +69,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot/PitchPivot"]
-collision_mask = 2
 shape = SubResource("SphereShape3D_8iyor")
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 5)
 script = ExtResource("2_qyjpo")
-mouse_sensitivity = 0.05
