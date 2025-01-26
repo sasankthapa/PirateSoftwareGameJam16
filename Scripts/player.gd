@@ -11,7 +11,7 @@ extends CharacterBody3D
 
 @onready var body: Node3D = $body
 @onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
-@onready var gpu_particles_3d = $body/GPUParticles3D
+#@onready var gpu_particles_3d = $body/GPUParticles3D
 
 var rotation_speed = 5.0
 var _last_movement_direction = Vector3.BACK
@@ -41,12 +41,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("ui_accept") and is_on_floor(): # use space button to charge
 		velocity.y = JUMP_VELOCITY
 	if Input.is_action_pressed("SHIFT_KEY"):
-		gpu_particles_3d.emitting=true
+		#gpu_particles_3d.emitting=true
 		is_charging_attack = true
 		charge_time = charge_time + delta
 		charge_time = min(charge_time, max_charge_time)
 	if Input.is_action_just_released("SHIFT_KEY"):
-		gpu_particles_3d.emitting=false
+		#gpu_particles_3d.emitting=false
 		is_ramming = true
 		is_charging_attack = false
 	
