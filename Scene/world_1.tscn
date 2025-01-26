@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=8 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
+[ext_resource type="PackedScene" uid="uid://c7cstcmlt0bve" path="res://Scene/Ram_basic.tscn" id="3_f4huk"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -46,3 +47,6 @@ environment = SubResource("Environment_h2xa8")
 
 [node name="HomeLevel_01" parent="." instance=ExtResource("2_pjo7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.1564, -2.62852, 30.2361)
+
+[node name="Ram_jkw" parent="." instance=ExtResource("3_f4huk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77173, -0.58416, -4.31955)
