@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwrn2350dk4mk"]
+[gd_scene load_steps=11 format=3 uid="uid://bwrn2350dk4mk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_udjfk"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="2_qyjpo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bedwv"]
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_8iyor"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1kjoh"]
 
@@ -16,26 +14,28 @@ albedo_color = Color(0.447059, 1, 1, 1)
 emission_enabled = true
 emission_energy_multiplier = 3.7
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8w0yp"]
+albedo_color = Color(0.918209, 0.440277, 0.260394, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ht8oa"]
+lifetime_randomness = 0.05
+emission_shape = 1
+emission_sphere_radius = 1.0
+angular_velocity_min = -513.1
+angular_velocity_max = -1.60933e-05
+color = Color(0.938064, 0.862141, 0.945792, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_amj4p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8iyor"]
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_udjfk")
+SPEED = 15.0
+ACCELERATION = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_bedwv")
-
-[node name="TwistPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot/PitchPivot"]
-shape = SubResource("SphereShape3D_8iyor")
-spring_length = 5.0
-
-[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 5)
-script = ExtResource("2_qyjpo")
-mouse_sensitivity = 0.05
 
 [node name="body" type="Node3D" parent="."]
 
@@ -48,3 +48,29 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.813328, 0.302932)
 mesh = SubResource("BoxMesh_78kvc")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_1igp0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="body"]
+transform = Transform3D(0.1, 0, 0, 0, -0.0998379, 0.00569195, 0, -0.00569195, -0.0998379, 0, 0.889102, -0.335612)
+material_override = SubResource("StandardMaterial3D_8w0yp")
+emitting = false
+amount = 9
+collision_base_size = 0.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_ht8oa")
+draw_pass_1 = SubResource("QuadMesh_amj4p")
+
+[node name="TwistPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="PitchPivot" type="Node3D" parent="TwistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot/PitchPivot"]
+collision_mask = 2
+shape = SubResource("SphereShape3D_8iyor")
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 5)
+script = ExtResource("2_qyjpo")
+mouse_sensitivity = 0.05

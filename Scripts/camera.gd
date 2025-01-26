@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	# process camera controls
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
-	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x * delta,-0.5,0.5)
+	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x,-0.5,0.5)
 	twist_input = 0
 	pitch_input = 0
 	
