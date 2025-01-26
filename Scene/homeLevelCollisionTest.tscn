@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqfob7bs0kphe"]
+
+[ext_resource type="PackedScene" uid="uid://dhk684dnsixmb" path="res://Assets_in_Progress/HomeLevel_01.glb" id="1_lioxf"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+
+[node name="HomeLevel_01" parent="StaticBody3D" instance=ExtResource("1_lioxf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.598435, 0, 0.606896)

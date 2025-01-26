@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=7 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
+[ext_resource type="PackedScene" uid="uid://cqfob7bs0kphe" path="res://Scene/homeLevelCollisionTest.tscn" id="2_ybqyo"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -23,6 +24,7 @@ shadow_enabled = true
 sky_mode = 1
 
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 mesh = SubResource("PlaneMesh_7x2ak")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
@@ -41,3 +43,5 @@ mesh = SubResource("BoxMesh_w5nck")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2xa8")
+
+[node name="Node3D" parent="." instance=ExtResource("2_ybqyo")]
