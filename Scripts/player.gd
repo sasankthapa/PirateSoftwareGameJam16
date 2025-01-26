@@ -1,19 +1,21 @@
 extends CharacterBody3D
 
-
-const SPEED = 10.0
-const JUMP_VELOCITY = 4.5
-const ACCELERATION = 4.0
+@export_group("player")
+@export var SPEED = 8.0
+@export var JUMP_VELOCITY = 4.5
+@export var ACCELERATION = 20.0
 
 @onready var twist_pivot: Node3D = $TwistPivot
-@onready var camera: Camera3D = $TwistPivot/PitchPivot/Camera3D
 @onready var body: Node3D = $body
+@onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
+
+var _last_movement_direction = Vector3.BACK
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -22,7 +24,16 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("A_KEY", "D_KEY", "W_KEY", "S_KEY")
 	var charging := Input.is_key_pressed(KEY_K)
-
+	var forward: Vector3 = camera.global_basis.z
+	var right: Vector3 = camera.global_basis.x
+	
+	var dir := forward * input_dir.y + right * input_dir.x
+	dir.y=0.0
+	dir=dir.normalized()
+	
+	var yy = velocity.y #store velocity.y
+	velocity = velocity.move_toward(dir * SPEED, ACCELERATION * delta)
+	velocity.y = yy
 	if charging: # change how the movement works
 		print("F")
 		return
@@ -30,14 +41,11 @@ func _physics_process(delta: float) -> void:
 
 	#var direction := (twist_pivot.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	#print(twist_pivot.basis)
-	var direction = Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, body.rotation.y)
-	velocity = lerp(velocity, direction * SPEED, ACCELERATION * delta)
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-
+	
 	move_and_slide()
-	body.rotation.y = twist_pivot.rotation.y
+	
+	# change rotation of player character
+	if dir.length() > 0.2:
+		_last_movement_direction=dir
+	var target_angle = Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
+	body.global_rotation.y = lerp_angle(body.rotation.y, target_angle, 1*delta)
