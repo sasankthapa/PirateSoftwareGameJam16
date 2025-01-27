@@ -46,6 +46,7 @@ data = PackedVector3Array(0.0251, 0.4196, 0, 0.3277, 0.6988, 0, 0.0391, 0.6883, 
 [node name="Ram_jkw" type="Node3D"]
 
 [node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 5.32868, 0)
 mesh = SubResource("ArrayMesh_1c887")
 skeleton = NodePath("")
 

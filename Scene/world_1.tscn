@@ -47,10 +47,10 @@ mesh = SubResource("BoxMesh_w5nck")
 environment = SubResource("Environment_h2xa8")
 
 [node name="HomeLevel_01" parent="." instance=ExtResource("2_pjo7m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.1564, -2.62852, 30.2361)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.156, 0, 30.236)
 
 [node name="Ram_jkw" parent="." instance=ExtResource("3_f4huk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77173, -0.58416, -4.31955)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.772, 0, -4.32)
 
 [node name="DeerCreature2" parent="." instance=ExtResource("4_fae0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94954, -2.62852, 21.3011)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.288, 0, 14.706)
