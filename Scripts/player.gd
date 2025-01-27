@@ -14,8 +14,8 @@ extends CharacterBody3D
 #@onready var gpu_particles_3d = $body/GPUParticles3D
 
 var rotation_speed = 5.0
-var _last_movement_direction = Vector3.BACK
-var _facing_direction = Vector3.BACK
+var _last_movement_direction = Vector3.FORWARD
+var _facing_direction = Vector3.FORWARD
 
 var is_ramming = false
 var is_charging_attack = true
