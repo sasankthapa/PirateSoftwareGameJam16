@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsk86jb4omasx"]
+
+[ext_resource type="Texture2D" uid="uid://bml5g7vgxw6eb" path="res://Assets_in_Progress/menus/deer_art.jpg" id="1_f4d2a"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -58)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_f4d2a")
+centered = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 1
+offset_left = 632.0
+offset_top = 2.0
+offset_right = 980.0
+offset_bottom = 521.0
+scale = Vector2(1.5, 1.5)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="New_Game" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "New Game"
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Continue"
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Options"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+text = "Exit"

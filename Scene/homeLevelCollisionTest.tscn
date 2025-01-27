@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ufoxjgb01ioj"]
-
-[ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="1_j8swn"]
-
-[node name="Node3D" type="Node3D"]
-
-[node name="HomeLevel_02" parent="." instance=ExtResource("1_j8swn")]
