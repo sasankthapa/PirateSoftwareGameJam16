@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=11 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
 [ext_resource type="PackedScene" uid="uid://6h5kfv4q6t63" path="res://Scene/Ram_basic.tscn" id="3_f4huk"]
 [ext_resource type="PackedScene" uid="uid://be0w2144133jd" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
+[ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -20,6 +21,15 @@ ambient_light_color = Color(0.688982, 0.88516, 0.989466, 1)
 ambient_light_energy = 0.33
 
 [node name="World1" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_ik6h8")]
+offset_left = 22.0
+offset_top = 23.0
+offset_right = 62.0
+offset_bottom = 63.0
+mouse_filter = 1
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.858065, 0.513541, 0, -0.513541, 0.858065, 3.26585, 10.9196, 11.4805)

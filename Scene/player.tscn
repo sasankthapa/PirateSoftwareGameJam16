@@ -64,7 +64,7 @@ shape = SubResource("SphereShape3D_8iyor")
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0.113225, 4.38938, -5.5481)
 script = ExtResource("2_qyjpo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
