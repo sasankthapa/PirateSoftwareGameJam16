@@ -1,7 +1,7 @@
 extends Camera3D
 
 
-@export_range(0.0,1.0,0.01) var mouse_sensitivity := 0.01
+@export_range(0.0,1.0,0.01) var mouse_sensitivity := 0.005
 var twist_input := 0.0
 var pitch_input := 0.0
 

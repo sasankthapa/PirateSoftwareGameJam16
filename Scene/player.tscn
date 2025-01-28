@@ -50,11 +50,9 @@ shadow_mesh = SubResource("ArrayMesh_rva14")
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_udjfk")
-SPEED = 15.0
-ACCELERATION = 30.0
 
 [node name="TwistPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0639763, 14.3246, 1.10442)
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)

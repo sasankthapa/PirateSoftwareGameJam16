@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 @export_group("player")
-@export var SPEED = 8.0
-@export var ACCELERATION = 20.0
-@export var JUMP_VELOCITY = 4.5
+@export var SPEED = 30.0
+@export var ACCELERATION = 60.0
+@export var JUMP_VELOCITY = 15.0
 
 @export_group("charge_attack")
 @export var CHARGE_SPEED = 100.0
@@ -13,9 +13,9 @@ extends CharacterBody3D
 @onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 #@onready var gpu_particles_3d = $body/GPUParticles3D
 
-var rotation_speed = 5.0
-var _last_movement_direction = Vector3.FORWARD
-var _facing_direction = Vector3.FORWARD
+var rotation_speed = 1.0
+var _last_movement_direction = Vector3.BACK
+var _facing_direction = Vector3.BACK
 
 var is_ramming = false
 var is_charging_attack = true
