@@ -10,6 +10,7 @@ var _facing_direction = Vector3.FORWARD
 
 
 signal ram
+signal charge_change
 
 #Horns
 var horn_1 : Horn= null
@@ -44,6 +45,7 @@ func process_player_physics(delta):
 		gpu_particles_3d.emitting=true
 		gpu_particles_3d.speed_scale = 1
 		charge(delta)
+		charge_change.emit(CHARGE_VAL)
 		
 		
 	if Input.is_action_just_released("SHIFT_KEY"):
@@ -55,6 +57,7 @@ func process_player_physics(delta):
 		
 func ram_speed(delta):
 	CHARGE_VAL = lerp(CHARGE_VAL, 0.0, 2*delta)
+	charge_change.emit(CHARGE_VAL)
 	if CHARGE_VAL < 0.01:
 		gpu_particles_3d.emitting=false
 		CHARGE_VAL=0.0 

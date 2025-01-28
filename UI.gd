@@ -3,6 +3,7 @@ extends Control
 var hud:Node = null
 var health_bar: ProgressBar = null
 var dodge_bar: ProgressBar = null
+var charge_bar: ProgressBar = null
 var player : Player = null
 
 # Called when the node enters the scene tree for the first time.
@@ -13,18 +14,22 @@ func _ready() -> void:
 		print("ERROR, hud is null")
 		
 	player = get_node("/root/World1/Player")
-		
+	
 	health_bar = hud.get_node("Health Bar")
-	health_bar.value = player.HP
 	dodge_bar = hud.get_node("Dodge Bar")
-		
-	print("Player HP: ", player.HP)
-	print("Initial health bar value: ", health_bar.value)
+	charge_bar = hud.get_node("Charge Bar")
+	
+	health_bar.value = player.HP	
 	
 	player.hp_changed.connect(_on_player_hp_change)
+	player.charge_change.connect(_on_charge_change)
+	
 
 func _on_player_hp_change(new_value):
 	health_bar.value=new_value
+	
+func _on_charge_change(new_value):
+	charge_bar.value=new_value
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
