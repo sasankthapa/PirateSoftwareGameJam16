@@ -1396,7 +1396,6 @@ offset_top = -2.0
 offset_right = 427.0
 offset_bottom = 26.0
 theme = SubResource("Theme_pseyy")
-value = 100.0
 show_percentage = false
 
 [node name="Dodge Bar" type="ProgressBar" parent="."]
