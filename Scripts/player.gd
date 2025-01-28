@@ -12,13 +12,18 @@ extends CharacterBody3D
 @onready var body: Node3D = $body
 @onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 #@onready var gpu_particles_3d = $body/GPUParticles3D
+@onready var dodge_time = $dodge_time
 
 var rotation_speed = 1.0
 var _last_movement_direction = Vector3.BACK
 var _facing_direction = Vector3.BACK
 
+var is_dodging = false
+var dodge_speed = 50.0
+var dodge_direction = Vector3.ZERO
+
 var is_ramming = false
-var is_charging_attack = true
+var is_charging_attack = false
 var charge_time = 0.0
 var max_charge_time = 2.0
 
@@ -31,6 +36,21 @@ func rotate_to_camera(delta:float): #unused rn
 		var target_rot = Vector3.BACK.signed_angle_to(forward, Vector3.UP)
 		#body.global_rotation.y = target_rot
 		body.global_rotation.y = lerp_angle(body.rotation.y, target_rot, rotation_speed * delta) 
+
+func dodge_roll(dir:String):
+	var right = -body.global_transform.basis.x #dont ask me why its "-" smh
+	right.y = 0
+	right = right.normalized()
+	dodge_direction = true
+	is_dodging = true
+	dodge_time.start()
+	if dir == "left":
+		dodge_direction = -right
+	else:
+		dodge_direction = right
+	velocity = dodge_direction * dodge_speed
+	is_dodging = false 
+	move_and_slide()
 	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -49,7 +69,14 @@ func _physics_process(delta: float) -> void:
 		#gpu_particles_3d.emitting=false
 		is_ramming = true
 		is_charging_attack = false
-	
+	if Input.is_action_pressed("DODGE") && !is_ramming && !is_charging_attack && dodge_time.is_stopped():
+		print("here")  
+		if Input.is_action_pressed("A_KEY"):
+			dodge_roll("left")
+		if Input.is_action_pressed("D_KEY"):
+			dodge_roll("right")
+			
+		
 	var input_dir := Input.get_vector("A_KEY", "D_KEY", "W_KEY", "S_KEY")
 	var forward: Vector3 = camera.global_basis.z
 	var right: Vector3 = camera.global_basis.x
@@ -60,7 +87,6 @@ func _physics_process(delta: float) -> void:
 	dir.y = 0.0
 	dir = dir.normalized()
 
-	print(charge_time)
 	var yy = velocity.y #store velocity.y because movement with camera messes with it
 	var newSpeed = SPEED
 	var newAcceleration = ACCELERATION
@@ -76,10 +102,14 @@ func _physics_process(delta: float) -> void:
 	 
 	velocity = velocity.move_toward(dir * newSpeed, newAcceleration * delta)
 	velocity.y = yy
+	
 	move_and_slide()
 	
 	# change rotation of player character
 	if dir.length() > 0.2:
 		_last_movement_direction=dir
+	if !dodge_time.is_stopped():
+		_last_movement_direction = body.global_transform.basis.z
 	var target_angle = Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 	body.global_rotation.y = lerp_angle(body.rotation.y, target_angle, rotation_speed*delta)
+	
