@@ -4,6 +4,8 @@ extends Node
 signal active_power_triggered
 
 var blocking_power: float
+var damage_dealing_power:float
+
 var is_passive_enabled: bool = false
 var is_active_enabled: bool = false
 var is_blocking_enabled: bool = false
