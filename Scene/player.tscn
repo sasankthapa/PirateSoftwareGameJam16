@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://bwrn2350dk4mk"]
+[gd_scene load_steps=11 format=4 uid="uid://bwrn2350dk4mk"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_udjfk"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="2_qyjpo"]
@@ -48,21 +48,34 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rva14")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_837pd"]
+billboard_mode = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1c8aq"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nrgta"]
+size = Vector2(1, 1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_udjfk")
 
 [node name="TwistPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0639763, 14.3246, 1.10442)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="TwistPivot/PitchPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
 shape = SubResource("SphereShape3D_8iyor")
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0.113225, 4.38938, -5.5481)
+transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -5.96046e-08, 1, 0, 0, 0)
+fov = 45.0
 script = ExtResource("2_qyjpo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
@@ -70,9 +83,33 @@ transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 5.0
 shape = SubResource("CapsuleShape3D_05162")
 
 [node name="body" type="Node3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 5.36229, 0)
+transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 5.36229, 0)
 
 [node name="body" type="MeshInstance3D" parent="body"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_taasg")
 skeleton = NodePath("")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="body"]
+transform = Transform3D(1, 0, 0, 0, 0.999351, -0.0360332, 0, 0.0360332, 0.999351, 0, -1.55093, -1.05699)
+material_override = SubResource("StandardMaterial3D_837pd")
+emitting = false
+lifetime = 0.5
+speed_scale = 4.02
+process_material = SubResource("ParticleProcessMaterial_1c8aq")
+draw_pass_1 = SubResource("PlaneMesh_nrgta")
+
+[node name="dodge_time" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.3
+one_shot = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.11339, 5.46138)
+
+[node name="dodge_cooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="dodge_cooldown" to="." method="_on_dodge_cooldown_timeout"]

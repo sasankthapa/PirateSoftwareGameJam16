@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://ci38xxr56lxkh"]
+[gd_scene load_steps=11 format=4 uid="uid://ci38xxr56lxkh"]
 
 [sub_resource type="Image" id="Image_mm187"]
 data = {
@@ -1374,20 +1374,44 @@ ProgressBar/fonts/font = SubResource("FontFile_jdjvm")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_t38a7")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_gtmed")
 
-[node name="HUD" type="Control"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_f360e"]
+
+[sub_resource type="Theme" id="Theme_73lc6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_430d7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vg6h0"]
+bg_color = Color(0.155749, 0.60369, 0.540023, 1)
+
+[node name="PLAYERHUD" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="Health Bar" type="ProgressBar" parent="."]
 texture_filter = 1
 layout_mode = 2
 offset_top = -2.0
 offset_right = 427.0
 offset_bottom = 26.0
 theme = SubResource("Theme_pseyy")
-value = 65.0
+value = 100.0
+show_percentage = false
+
+[node name="Dodge Bar" type="ProgressBar" parent="."]
+material = SubResource("CanvasItemMaterial_f360e")
+layout_mode = 0
+offset_left = -1.0
+offset_top = 40.0
+offset_right = 174.0
+offset_bottom = 52.0
+theme = SubResource("Theme_73lc6")
+theme_override_styles/background = SubResource("StyleBoxFlat_430d7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vg6h0")
+max_value = 2.0
+step = 2.0
+value = 2.0
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="."]

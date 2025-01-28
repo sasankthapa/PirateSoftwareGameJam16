@@ -24,7 +24,7 @@ ambient_light_energy = 0.33
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("6_ik6h8")]
+[node name="PLAYERHUD" parent="CanvasLayer" instance=ExtResource("6_ik6h8")]
 offset_left = 22.0
 offset_top = 23.0
 offset_right = 62.0
