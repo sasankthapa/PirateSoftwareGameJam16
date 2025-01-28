@@ -3,6 +3,8 @@ extends Creature
 class_name Enemy
 
 var target: Node3D
+#We need a better way to reference player node
+var player: Player = get_tree().get_first_node_in_group("player")
 
 func handle_movement(delta: float) -> void:
 	if target:

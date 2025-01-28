@@ -14,8 +14,8 @@ var BASE_JUMP_VELOCITY : float = 15.0
 var BASE_ROTATION_SPEED : float = 2.0
 
 var BASE_CHARGE_VAL: float = 1.0
-var BASE_CHARGE_SPEED:float = 1.0
-var BASE_MAX_CHARGE: float = 3.0
+var BASE_CHARGE_SPEED:float = 2.0
+var BASE_MAX_CHARGE: float = 5.0
 
 ## Current States
 var HP: float
@@ -37,6 +37,13 @@ var is_ramming:bool = false
 var is_dodging: bool = false
 var is_charging:bool = false
 var is_charged:bool = false
+var is_rolling = false
+
+# Dodge roll parameters
+var roll_speed = 15.0
+var roll_duration = 0.5
+var roll_timer = 0.0
+var roll_direction = Vector3.ZERO
 
 
 # Dictionary to store modifiers for each stat
@@ -81,9 +88,9 @@ func intialize():
 
 ### Stat Modification Manager
 # Add a modifier to a specific stat
-func add_modifier(stat_name: String, modifier_id: String, value: float):
+func add_modifier(stat_name: String, modifier_id: String, value: float, is_multiplier: bool = false):
 	var modifier_dict = _get_modifier_dict(stat_name)
-	modifier_dict[modifier_id] = value
+	modifier_dict[modifier_id] = {"value": value, "is_multiplier": is_multiplier}
 	_recalculate_stat(stat_name)
 
 # Remove a modifier from a specific stat
@@ -131,14 +138,25 @@ func _recalculate_stat(stat_name: String):
 	var modifier_dict = _get_modifier_dict(stat_name)
 	var current_value = _get_current_stat(stat_name)
 	
-	# Add up all modifiers
-	var total_modifier: float = 0.0
-	for modifier_value in modifier_dict.values():
-		total_modifier += modifier_value
+	# First, apply all multiplicative modifiers
+	var total_multiplier: float = 1.0
+	for modifier in modifier_dict.values():
+		if modifier["is_multiplier"]:
+			total_multiplier *= (1.0 + modifier["value"])
 	
-	# Apply total modifier to base value
-	var final_value = base_value + total_modifier
+	# Apply multiplier to base value
+	var after_multipliers = base_value * total_multiplier
 	
+	# Then, apply all additive modifiers
+	var total_addition: float = 0.0
+	for modifier in modifier_dict.values():
+		if not modifier["is_multiplier"]:
+			total_addition += modifier["value"]
+	
+	# Calculate final value
+	var final_value = after_multipliers + total_addition
+	
+	# Set the new value and emit signal
 	_set_current_stat(stat_name, final_value)
 	stat_changes.emit(stat_name, current_value, final_value)
 
@@ -148,6 +166,7 @@ func jump():
 	
 func charge(delta):
 	is_charging = true
+	add_modifier("SPEED", "charging", -0.6, true)
 	CHARGE_VAL = CHARGE_VAL + delta*CHARGE_SPEED
 	CHARGE_VAL = min(CHARGE_VAL, MAX_CHARGE)
 	
@@ -157,7 +176,8 @@ func charge(delta):
 func discharge(delta):
 	is_ramming = true
 	is_charging = false
-	SPEED = SPEED + CHARGE_VAL * BASE_SPEED
+	remove_modifier("SPEED", "charging")
+	add_modifier("SPEED", "charge", CHARGE_VAL * BASE_SPEED , false)
 
 	
 func dodge():
@@ -183,8 +203,37 @@ func apply_gravity(delta: float) -> void:
 		velocity += get_gravity() * delta
 		
 func handle_movement(delta: float) -> void:
-	pass
+	# Check for dodge roll input (you can change the input action name as needed)
+	if Input.is_action_just_pressed("dodge_roll") and !is_rolling:
+		start_roll()
+	
+	# Handle roll movement
+	if is_rolling:
+		roll_timer += delta
+		velocity = roll_direction * roll_speed
+		
+		# End roll when duration is complete
+		if roll_timer >= roll_duration:
+			end_roll()
+func start_roll():
+	is_rolling = true
+	roll_timer = 0.0
+	
+	# Get input direction for roll
+	var input_dir = Vector3.ZERO
+	input_dir.x = Input.get_axis("move_left", "move_right")
+	input_dir.z = Input.get_axis("move_forward", "move_back")
+	
+	# If no direction input, roll forward
+	if input_dir == Vector3.ZERO:
+		roll_direction = -global_transform.basis.z
+	else:
+		roll_direction = input_dir.normalized()
 
+func end_roll():
+	is_rolling = false
+	velocity = Vector3.ZERO
+	
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
 		rotate_to_direction(direction, delta)
@@ -204,4 +253,13 @@ func stop_movement() -> void:
 
 func process_creature_physics(delta: float) -> void:
 	pass
-	
+		
+	if is_ramming:
+		ram_speed(delta)
+		
+func ram_speed(delta):
+	CHARGE_VAL = lerp(CHARGE_VAL, 0.0, 2*delta)
+	if CHARGE_VAL < 0.01:
+		CHARGE_VAL=0.0 
+		is_ramming=false
+		remove_modifier("SPEED", "charge")

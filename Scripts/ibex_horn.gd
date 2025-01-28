@@ -1,21 +1,15 @@
 extends Horn
 
-
-var multAttack = 1.1
-var multDefense = 1.2
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	super._init(20.0)
+	super._init(1.0,1.0)
 
-# Will be overridden by specific horn types
-func passive_power(state:bool) -> void:
-	if state and is_equipped:
-		multAttack = 1.1
-		multDefense = 1.2
-	else:
-		multAttack = 1.0
-		multDefense = 1.0
+
+func add_passive_power() -> void:
+	player.add_modifier("CHARGE_SPEED", "Ibex_horn_passive", 1.0, true)
+
+func remove_passive_power()-> void:
+	player.remove_modifier("CHARGE_SPEED","Ibex_horn_passive" )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

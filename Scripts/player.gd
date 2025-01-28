@@ -19,8 +19,9 @@ var horn_3 : Horn = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("player")
 	super()
-	print("Player HP: ", HP)
+	
 	
 
 func _physics_process(delta):
@@ -41,20 +42,21 @@ func process_player_physics(delta):
 	body.global_rotation.y = lerp_angle(body.rotation.y, target_angle, ROTATION_SPEED*delta)
 
 	## Handle charging
-	if Input.is_action_pressed("SHIFT_KEY"):
+	if Input.is_action_just_pressed("SHIFT_KEY"):
 		gpu_particles_3d.emitting=true
 		gpu_particles_3d.speed_scale = 1
+		
+
+	if Input.is_action_pressed("SHIFT_KEY"):
 		charge(delta)
 		charge_change.emit(CHARGE_VAL)
+		print("Charge Value", CHARGE_VAL)
 		
 		
 	if Input.is_action_just_released("SHIFT_KEY"):
 		gpu_particles_3d.speed_scale = 4
 		discharge(delta)
 
-	if is_ramming:
-		ram_speed(delta)
-		
 func ram_speed(delta):
 	CHARGE_VAL = lerp(CHARGE_VAL, 0.0, 2*delta)
 	charge_change.emit(CHARGE_VAL)
@@ -62,7 +64,7 @@ func ram_speed(delta):
 		gpu_particles_3d.emitting=false
 		CHARGE_VAL=0.0 
 		is_ramming=false
-		SPEED = BASE_SPEED
+		remove_modifier("SPEED", "charge")
 	
 func _input(event: InputEvent) -> void:
 	pass
@@ -89,7 +91,6 @@ func get_camera_oriented_input(input_dir: Vector2) -> Vector3:
 		direction.y = 0;
 	#
 	return direction.normalized()
-
 
 ##Doesn't work
 func align_camera_to_player():
