@@ -1401,16 +1401,30 @@ show_percentage = false
 [node name="Dodge Bar" type="ProgressBar" parent="."]
 material = SubResource("CanvasItemMaterial_f360e")
 layout_mode = 0
-offset_left = -1.0
-offset_top = 40.0
-offset_right = 174.0
-offset_bottom = 52.0
+offset_left = 4.0
+offset_top = 77.0
+offset_right = 179.0
+offset_bottom = 89.0
 theme = SubResource("Theme_73lc6")
 theme_override_styles/background = SubResource("StyleBoxFlat_430d7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vg6h0")
 max_value = 2.0
 step = 2.0
 value = 2.0
+show_percentage = false
+
+[node name="Charge Bar" type="ProgressBar" parent="."]
+material = SubResource("CanvasItemMaterial_f360e")
+layout_mode = 0
+offset_left = 3.0
+offset_top = 49.0
+offset_right = 178.0
+offset_bottom = 61.0
+theme = SubResource("Theme_73lc6")
+theme_override_styles/background = SubResource("StyleBoxFlat_430d7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vg6h0")
+max_value = 3.0
+step = 0.1
 show_percentage = false
 
 [node name="Panel" type="Panel" parent="."]
