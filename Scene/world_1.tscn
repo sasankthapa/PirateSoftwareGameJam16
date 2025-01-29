@@ -3,12 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
 [ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
-[ext_resource type="PackedScene" uid="uid://6h5kfv4q6t63" path="res://Scene/Ram_basic.tscn" id="3_f4huk"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_gfxu1"]
 [ext_resource type="PackedScene" uid="uid://be0w2144133jd" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
+[ext_resource type="PackedScene" uid="uid://d34dlr70gsx61" path="res://Ram_jkw.tscn" id="7_8e4ts"]
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="8_kv3xq"]
+[ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -22,8 +23,6 @@ data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100,
 ambient_light_source = 2
 ambient_light_color = Color(0.688982, 0.88516, 0.989466, 1)
 ambient_light_energy = 0.33
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_msv8a"]
 
 [node name="World1" type="Node3D"]
 
@@ -52,7 +51,7 @@ mesh = SubResource("PlaneMesh_7x2ak")
 shape = SubResource("ConcavePolygonShape3D_x4l04")
 
 [node name="Player" parent="." instance=ExtResource("1_ue8en")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04142, 30.7065)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.437, 2.04142, 74.5793)
 script = ExtResource("3_gfxu1")
 
 [node name="DeerCreature2" parent="." instance=ExtResource("4_fae0y")]
@@ -70,16 +69,14 @@ environment = SubResource("Environment_h2xa8")
 [node name="HomeLevel_01" parent="." instance=ExtResource("2_pjo7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.156, 0, 30.236)
 
-[node name="Ram_jkw" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77059, 0.0814199, -4.34833)
-script = ExtResource("8_kv3xq")
-
-[node name="body" parent="Ram_jkw" instance=ExtResource("3_f4huk")]
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ram_jkw"]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 3.338, 1.5, -0.572)
-shape = SubResource("BoxShape3D_msv8a")
+[node name="Ram_jkw" parent="." instance=ExtResource("7_8e4ts")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34837, 0.123373, -4.40345)
+script = null
 
 [node name="Pause_Menu" parent="." instance=ExtResource("5_j448v")]
 process_mode = 3
 visible = false
+
+[node name="EnemyRam" parent="." instance=ExtResource("10_vx0s0")]
+transform = Transform3D(-0.999955, 0, 0.00951189, 0, 1, 0, -0.00951189, 0, -0.999955, 24.4507, 0.0927792, 21.205)
+script = ExtResource("8_kv3xq")

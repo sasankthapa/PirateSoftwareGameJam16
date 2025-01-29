@@ -11,7 +11,7 @@ var BASE_ATTACK: float = 0.0
 var BASE_SPEED: float = 50
 var BASE_ACCELERATION: float = 100
 var BASE_JUMP_VELOCITY : float = 20
-var BASE_ROTATION_SPEED : float = 5
+var BASE_ROTATION_SPEED : float = 10
 
 var BASE_CHARGE_VAL: float = 0
 var BASE_CHARGE_SPEED:float = 2
@@ -203,10 +203,8 @@ func handle_movement(delta: float) -> void:
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
 		rotate_to_direction(direction, delta)
-		print("Direction: ", direction)  # Debug print
-		print("Current Velocity: ", velocity)  # Debug print
+
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION*delta)
-		print("New Velocity: ", velocity)  # Debug print
 	else:
 		stop_movement()
 
