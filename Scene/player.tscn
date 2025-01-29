@@ -5,8 +5,8 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8iyor"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_05162"]
-height = 3.4093
+[sub_resource type="BoxShape3D" id="BoxShape3D_nosyu"]
+size = Vector3(1, 1, 2.06152)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttaxh"]
 resource_name = "Material.001"
@@ -79,8 +79,8 @@ fov = 45.0
 script = ExtResource("2_qyjpo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 5.07799, 3.67636)
-shape = SubResource("CapsuleShape3D_05162")
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_nosyu")
 
 [node name="body" type="Node3D" parent="."]
 transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 5.36229, 0)
@@ -103,9 +103,6 @@ draw_pass_1 = SubResource("PlaneMesh_nrgta")
 process_callback = 0
 wait_time = 0.3
 one_shot = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.11339, 5.46138)
 
 [node name="dodge_cooldown" type="Timer" parent="."]
 process_callback = 0

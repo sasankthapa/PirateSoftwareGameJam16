@@ -2,9 +2,7 @@
 extends Creature
 class_name Enemy
 
-var target: Node3D
-#We need a better way to reference player node
-var player: Player = get_tree().get_first_node_in_group("player")
+var target: Player
 
 func handle_movement(delta: float) -> void:
 	if target:
@@ -13,10 +11,11 @@ func handle_movement(delta: float) -> void:
 		direction = direction.normalized()
 		move_in_direction(direction, delta)
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	await get_tree().process_frame
+	target = get_tree().get_first_node_in_group("player")
+	SPEED = 1.0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

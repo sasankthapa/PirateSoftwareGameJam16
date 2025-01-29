@@ -6,16 +6,16 @@ class_name Creature
 ## Base stats
 var BASE_MAX_HP: float = 100.0
 var BASE_DEFENSE: float = 0.0
-var BASE_ATTACK: float = 10.0
+var BASE_ATTACK: float = 0.0
 
-var BASE_SPEED: float = 40.0
-var BASE_ACCELERATION: float = 40.0
-var BASE_JUMP_VELOCITY : float = 15.0
-var BASE_ROTATION_SPEED : float = 2.0
+var BASE_SPEED: float = 50
+var BASE_ACCELERATION: float = 100
+var BASE_JUMP_VELOCITY : float = 20
+var BASE_ROTATION_SPEED : float = 5
 
-var BASE_CHARGE_VAL: float = 1.0
-var BASE_CHARGE_SPEED:float = 2.0
-var BASE_MAX_CHARGE: float = 5.0
+var BASE_CHARGE_VAL: float = 0
+var BASE_CHARGE_SPEED:float = 2
+var BASE_MAX_CHARGE: float = 5
 
 ## Current States
 var HP: float
@@ -38,12 +38,6 @@ var is_dodging: bool = false
 var is_charging:bool = false
 var is_charged:bool = false
 var is_rolling = false
-
-# Dodge roll parameters
-var roll_speed = 15.0
-var roll_duration = 0.5
-var roll_timer = 0.0
-var roll_direction = Vector3.ZERO
 
 
 # Dictionary to store modifiers for each stat
@@ -173,7 +167,7 @@ func charge(delta):
 	if CHARGE_VAL == MAX_CHARGE:
 		emit_signal("charged")
 	
-func discharge(delta):
+func discharge():
 	is_ramming = true
 	is_charging = false
 	remove_modifier("SPEED", "charging")
@@ -200,44 +194,19 @@ func die() -> void:
 	
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity.y += get_gravity().y * delta
 		
 func handle_movement(delta: float) -> void:
-	# Check for dodge roll input (you can change the input action name as needed)
-	if Input.is_action_just_pressed("dodge_roll") and !is_rolling:
-		start_roll()
+	pass
 	
-	# Handle roll movement
-	if is_rolling:
-		roll_timer += delta
-		velocity = roll_direction * roll_speed
-		
-		# End roll when duration is complete
-		if roll_timer >= roll_duration:
-			end_roll()
-func start_roll():
-	is_rolling = true
-	roll_timer = 0.0
-	
-	# Get input direction for roll
-	var input_dir = Vector3.ZERO
-	input_dir.x = Input.get_axis("move_left", "move_right")
-	input_dir.z = Input.get_axis("move_forward", "move_back")
-	
-	# If no direction input, roll forward
-	if input_dir == Vector3.ZERO:
-		roll_direction = -global_transform.basis.z
-	else:
-		roll_direction = input_dir.normalized()
-
-func end_roll():
-	is_rolling = false
-	velocity = Vector3.ZERO
 	
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
 		rotate_to_direction(direction, delta)
+		print("Direction: ", direction)  # Debug print
+		print("Current Velocity: ", velocity)  # Debug print
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION*delta)
+		print("New Velocity: ", velocity)  # Debug print
 	else:
 		stop_movement()
 

@@ -1,17 +1,20 @@
 class_name Horn
 extends Node
 
-signal active_power_triggered
-
 var blocking_power: float
 var damage_dealing_power:float
+signal active_power_triggered
 
 var is_passive_enabled: bool = false
 var is_active_enabled: bool = false
 var is_blocking_enabled: bool = false
 var is_equipped:bool = false
 
-@onready var player: Player = get_tree().get_first_node_in_group("player")
+var player: Player
+
+func _ready():
+	await get_tree().process_frame
+	player = get_tree().get_first_node_in_group("player")
 
 func _init(damage_dealing:float = 0, blocking: float = 0.0):
 	damage_dealing_power = damage_dealing
@@ -32,7 +35,7 @@ func enable_active() -> void:
 	is_active_enabled = true
 	is_blocking_enabled = false
 	is_passive_enabled = false
-	player.add_modifier("ATTACK", "Horn", damage_dealing_power, true)
+	player.add_modifier("ATTACK", "Horn", damage_dealing_power, false)
 	remove_passive_power()
 	player.remove_modifier("DEFENSE", "Horn")
 	
@@ -51,7 +54,7 @@ func enable_blocking() -> void:
 	is_passive_enabled = false
 	player.remove_modifier("ATTACK", "Horn")
 	remove_passive_power()
-	player.add_modifier("DEFENSE", "Horn", blocking_power, true)
+	player.add_modifier("DEFENSE", "Horn", blocking_power, false)
 
 func get_blocking_power() -> float:
 	return blocking_power

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=15 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://be0w2144133jd" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="8_kv3xq"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -21,6 +22,8 @@ data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100,
 ambient_light_source = 2
 ambient_light_color = Color(0.688982, 0.88516, 0.989466, 1)
 ambient_light_energy = 0.33
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_msv8a"]
 
 [node name="World1" type="Node3D"]
 
@@ -52,6 +55,9 @@ shape = SubResource("ConcavePolygonShape3D_x4l04")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04142, 30.7065)
 script = ExtResource("3_gfxu1")
 
+[node name="DeerCreature2" parent="." instance=ExtResource("4_fae0y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.288, 0, 14.706)
+
 [node name="Objects" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Objects"]
@@ -64,11 +70,15 @@ environment = SubResource("Environment_h2xa8")
 [node name="HomeLevel_01" parent="." instance=ExtResource("2_pjo7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.156, 0, 30.236)
 
-[node name="Ram_jkw" parent="." instance=ExtResource("3_f4huk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.772, 0, -4.32)
+[node name="Ram_jkw" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.77059, 0.0814199, -4.34833)
+script = ExtResource("8_kv3xq")
 
-[node name="DeerCreature2" parent="." instance=ExtResource("4_fae0y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.288, 0, 14.706)
+[node name="body" parent="Ram_jkw" instance=ExtResource("3_f4huk")]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ram_jkw"]
+transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 3.338, 1.5, -0.572)
+shape = SubResource("BoxShape3D_msv8a")
 
 [node name="Pause_Menu" parent="." instance=ExtResource("5_j448v")]
 process_mode = 3

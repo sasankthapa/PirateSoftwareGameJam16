@@ -37,9 +37,9 @@ func process_player_physics(delta):
 		align_camera_to_player()
 		
 	
-	## Final alignment of the player
-	var target_angle = Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
-	body.global_rotation.y = lerp_angle(body.rotation.y, target_angle, ROTATION_SPEED*delta)
+	### Final alignment of the player
+	#var target_angle = Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
+	#body.global_rotation.y = lerp_angle(body.rotation.y, target_angle, ROTATION_SPEED*delta)
 
 	## Handle charging
 	if Input.is_action_just_pressed("SHIFT_KEY"):
@@ -50,12 +50,11 @@ func process_player_physics(delta):
 	if Input.is_action_pressed("SHIFT_KEY"):
 		charge(delta)
 		charge_change.emit(CHARGE_VAL)
-		print("Charge Value", CHARGE_VAL)
 		
 		
 	if Input.is_action_just_released("SHIFT_KEY"):
 		gpu_particles_3d.speed_scale = 4
-		discharge(delta)
+		discharge()
 
 func ram_speed(delta):
 	CHARGE_VAL = lerp(CHARGE_VAL, 0.0, 2*delta)
@@ -73,7 +72,7 @@ func handle_movement(delta: float) -> void:
 	var input_dir := Input.get_vector("A_KEY", "D_KEY", "W_KEY", "S_KEY")
 	var direction = get_camera_oriented_input(input_dir)
 	move_in_direction(direction, delta) 
-	
+		
 	# Store last direction input
 	if direction.length() > 0.2:
 		_last_movement_direction=direction	

@@ -21,7 +21,6 @@ func _process(delta: float) -> void:
 			paused = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-
 func _on_resume_pressed() -> void:
 	pause_menu.hide()
 	get_tree().paused = false
