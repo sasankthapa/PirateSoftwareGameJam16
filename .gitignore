@@ -18,3 +18,5 @@ mono_crash.*.json
 # Local testing scripts
 test*.gd
 Scripts/test*.gd
+
+Scene/*.tmp
