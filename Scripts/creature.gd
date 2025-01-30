@@ -156,7 +156,9 @@ func _recalculate_stat(stat_name: String):
 
 ### Actions
 func jump():
-	velocity.y = JUMP_VELOCITY
+	if is_on_floor:
+		velocity.y = JUMP_VELOCITY
+		
 	
 func charge(delta):
 	is_charging = true
@@ -204,7 +206,11 @@ func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
 		rotate_to_direction(direction, delta)
 
+		var yy = velocity.y
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION*delta)
+		velocity.y = yy
+
+
 	else:
 		stop_movement()
 

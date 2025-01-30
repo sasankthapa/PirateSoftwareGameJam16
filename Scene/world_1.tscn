@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=14 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
@@ -7,8 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://be0w2144133jd" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
-[ext_resource type="PackedScene" uid="uid://d34dlr70gsx61" path="res://Ram_jkw.tscn" id="7_8e4ts"]
-[ext_resource type="Script" path="res://Scripts/enemy.gd" id="8_kv3xq"]
+[ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="6_ksiss"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
@@ -54,6 +53,10 @@ shape = SubResource("ConcavePolygonShape3D_x4l04")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.437, 2.04142, 74.5793)
 script = ExtResource("3_gfxu1")
 
+[node name="EnemyRam" parent="." instance=ExtResource("10_vx0s0")]
+transform = Transform3D(-0.999955, 0, 0.00951189, 0, 1, 0, -0.00951189, 0, -0.999955, 24.4507, 0.0927792, 21.205)
+script = ExtResource("6_ksiss")
+
 [node name="DeerCreature2" parent="." instance=ExtResource("4_fae0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.288, 0, 14.706)
 
@@ -69,14 +72,6 @@ environment = SubResource("Environment_h2xa8")
 [node name="HomeLevel_01" parent="." instance=ExtResource("2_pjo7m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.156, 0, 30.236)
 
-[node name="Ram_jkw" parent="." instance=ExtResource("7_8e4ts")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.34837, 0.123373, -4.40345)
-script = null
-
 [node name="Pause_Menu" parent="." instance=ExtResource("5_j448v")]
 process_mode = 3
 visible = false
-
-[node name="EnemyRam" parent="." instance=ExtResource("10_vx0s0")]
-transform = Transform3D(-0.999955, 0, 0.00951189, 0, 1, 0, -0.00951189, 0, -0.999955, 24.4507, 0.0927792, 21.205)
-script = ExtResource("8_kv3xq")
