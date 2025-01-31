@@ -3,7 +3,11 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+<<<<<<< Updated upstream
 uid="uid://ml484eg6t7fl"
+=======
+uid="uid://wx5uj21df2sc"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Buffalo_Horns.glb-86d6aa3e5330078b182abdcc7c5410b0.scn"
 
 [deps]

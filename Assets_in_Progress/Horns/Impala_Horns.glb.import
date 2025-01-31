@@ -3,7 +3,11 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+<<<<<<< Updated upstream
 uid="uid://capxc71d1ojg1"
+=======
+uid="uid://cr8s6avsw4xxl"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Impala_Horns.glb-54b2537b890f7a268bf6f8ca60788217.scn"
 
 [deps]

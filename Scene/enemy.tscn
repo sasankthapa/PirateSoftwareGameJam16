@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://mj1lf4vs855t"]
 
 [ext_resource type="Script" path="res://Scripts/player_dep.gd" id="1_1kcwu"]
-[ext_resource type="Script" path="res://equipManager.gd" id="2_opbwv"]
+[ext_resource type="Script" path="res://Scripts/equipManager.gd" id="2_opbwv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nosyu"]
 size = Vector3(1, 1, 2.06152)

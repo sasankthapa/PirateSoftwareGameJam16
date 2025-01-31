@@ -3,7 +3,11 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
+<<<<<<< Updated upstream
 uid="uid://ghgmmnirc3ul"
+=======
+uid="uid://b4ibcscng14s8"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Ibex_Horns.glb-212f6d60536acdb9967204552e993e12.scn"
 
 [deps]
