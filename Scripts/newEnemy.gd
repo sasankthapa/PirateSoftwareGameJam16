@@ -20,4 +20,5 @@ func _ready():
 	SPEED = 30.0
 	ACCELERATION = 10.0
 	ROTATION_SPEED = 100.0
+	WEIGHT=70.0
 	

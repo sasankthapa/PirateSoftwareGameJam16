@@ -28,7 +28,7 @@ script = ExtResource("1_2v7et")
 
 [node name="body" type="Node3D" parent="."]
 
-[node name="PlayerDeer" parent="body" instance=ExtResource("2_5x83v")]
+[node name="PlayerDeer" parent="body" groups=["enemy", "player"] instance=ExtResource("2_5x83v")]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="body"]
 transform = Transform3D(1, 0, 0, 0, 0.999351, -0.0360332, 0, 0.0360332, 0.999351, 0, -1.55093, -1.05699)

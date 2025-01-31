@@ -27,5 +27,3 @@ tree_root = SubResource("AnimationRootNode_pg5r0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58985, 0.491516)
 shape = SubResource("BoxShape3D_xh1k8")
-
-[connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]

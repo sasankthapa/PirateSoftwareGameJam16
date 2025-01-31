@@ -193,7 +193,7 @@ func jump():
 	
 func charge(delta):
 	is_charging = true
-	add_modifier("SPEED", "charging", -0.6, true)
+	add_modifier("SPEED", "charging", 0.5, true)
 	CHARGE_VAL = CHARGE_VAL + delta*CHARGE_SPEED
 	CHARGE_VAL = min(CHARGE_VAL, MAX_CHARGE)
 	
@@ -269,7 +269,7 @@ func apply_gravity(delta: float) -> void:
 func handle_movement(delta: float) -> void:
 	pass
 
-func handle_knockback(bodyVel:Vector3, power) -> void:
+func handle_knockback(bodyVel:Vector3, power:float) -> void:
 	velocity = bodyVel * power
 	velocity.y += power
 	
