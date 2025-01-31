@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://di0iwpw7wxonc"]
+[gd_scene load_steps=27 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://yy46yjk7hneq" path="res://Scene/sheep.tscn" id="1_cauor"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
-[ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
+[ext_resource type="PackedScene" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
 [ext_resource type="PackedScene" uid="uid://4jhfr1awtoff" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
@@ -12,8 +12,15 @@
 [ext_resource type="Script" path="res://gameManager.gd" id="10_ao2ib"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
 [ext_resource type="PackedScene" uid="uid://c6sw3pd5cr7uu" path="res://Scene/IbexHorn.tscn" id="12_u1wl3"]
-[ext_resource type="AudioStream" uid="uid://ca6fucygbbvql" path="res://Assets_in_Progress/foley/walk-on-grass-1-291984.mp3" id="13_ve3wr"]
-[ext_resource type="AudioStream" uid="uid://p7pwf2wrkxeu" path="res://Assets_in_Progress/foley/forest-sounds.mp3" id="14_pwkd4"]
+[ext_resource type="AudioStream" uid="uid://c88x7a50ny2tk" path="res://Assets_in_Progress/foley/walk-on-grass-1-291984.mp3" id="13_ve3wr"]
+[ext_resource type="AudioStream" uid="uid://bhhf6i72l3eft" path="res://Assets_in_Progress/foley/forest-sounds.mp3" id="14_pwkd4"]
+[ext_resource type="AudioStream" uid="uid://bycuh8fmsv5lo" path="res://Assets_in_Progress/music/1m_mysterious.mp3" id="15_8saoo"]
+[ext_resource type="AudioStream" uid="uid://c13t4w5mny3uj" path="res://Assets_in_Progress/music/a_little_bit_intense_bassy.mp3" id="16_6gbos"]
+[ext_resource type="AudioStream" uid="uid://dvynxm7wuqstk" path="res://Assets_in_Progress/music/distorted_upbeat_fight.mp3" id="17_udguf"]
+[ext_resource type="AudioStream" uid="uid://dqt50ye5wgncd" path="res://Assets_in_Progress/music/here_comes_the_ram.mp3" id="18_knjw2"]
+[ext_resource type="AudioStream" uid="uid://bnmxu285a4myn" path="res://Assets_in_Progress/music/in_my_life.mp3" id="19_1fg10"]
+[ext_resource type="AudioStream" uid="uid://bochif6qe4vvg" path="res://Assets_in_Progress/music/ramthesheep.mp3" id="20_xh3d4"]
+[ext_resource type="AudioStream" uid="uid://cpfokuoyu0is3" path="res://Assets_in_Progress/music/take_a_ram_at_me.mp3" id="21_kn8px"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -27,6 +34,18 @@ data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100,
 ambient_light_source = 2
 ambient_light_color = Color(0.688982, 0.88516, 0.989466, 1)
 ambient_light_energy = 0.33
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_3ligo"]
+stream_count = 9
+stream_0 = ExtResource("15_8saoo")
+stream_1 = ExtResource("16_6gbos")
+stream_2 = ExtResource("17_udguf")
+stream_3 = ExtResource("18_knjw2")
+stream_4 = ExtResource("19_1fg10")
+stream_5 = ExtResource("20_xh3d4")
+stream_6 = ExtResource("21_kn8px")
+stream_7 = ExtResource("16_6gbos")
+stream_8 = ExtResource("15_8saoo")
 
 [node name="World1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70092, 0)
@@ -113,3 +132,6 @@ volume_db = -16.365
 stream = ExtResource("14_pwkd4")
 volume_db = -37.0
 autoplay = true
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPlaylist_3ligo")
