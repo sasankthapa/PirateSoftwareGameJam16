@@ -13,6 +13,11 @@ func handle_movement(delta: float) -> void:
 
 func _process(delta):
 	if target:
+		if global_position.distance_to(target.global_position) < 10:
+			charge(delta)
+			await get_tree().create_timer(5).timeout
+			discharge()
+			
 		if global_position.distance_to(target.global_position) < 40:
 			hostile = true
 func _ready():

@@ -82,3 +82,7 @@ func set_blocking_power(value: float) -> void:
 # Connect this to whatever should trigger the active power
 func _on_active_power_triggered() -> void:
 	active_power()
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player.collectHorn.emit(self)

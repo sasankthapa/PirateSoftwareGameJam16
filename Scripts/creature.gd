@@ -268,9 +268,15 @@ func apply_gravity(delta: float) -> void:
 func handle_movement(delta: float) -> void:
 	pass
 
+
 func handle_knockback(bodyVel:Vector3, power:float) -> void:
 	velocity = bodyVel * power
 	velocity.y += power
+
+
+func calcDamage(from: Creature, to: Creature) -> float:
+	return (from.ATTACK)/(to.DEFENSE)*from.SPEED/2
+
 	
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
