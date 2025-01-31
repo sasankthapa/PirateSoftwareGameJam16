@@ -3,8 +3,10 @@ extends Control
 var player:Player
 var ibexHorn:IbexHorn = null
 var deerHorn:DeerHorn = null
-#var elkHorn:ElkHorn = null
-#var elkHorn:ElkHorn = null
+var ramHorn:RamHorn = null
+var bullHorn:BullHorn = null
+var elkHorn:BullHorn = null
+var buffaloHorn:BullHorn = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,7 +17,8 @@ func _ready() -> void:
 	deerHorn = get_node("/root/World1/Player/DeerHorn")
 	ramHorn = get_node("/root/World1/Player/RamHorn")
 	elkHorn = get_node("/root/World1/Player/ElkHorn")
-	elkHorn = get_node("/root/World1/Player/ElkHorn")
+	bullHorn = get_node("/root/World1/Player/BullHorn")
+	buffaloHorn = get_node("/root/World1/Player/BuffaloHorn")
 	
 	
 	player.unequip_horn.connect(_on_unequip_horn)
