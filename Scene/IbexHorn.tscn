@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6sw3pd5cr7uu"]
 
 [ext_resource type="Script" path="res://Scripts/horns/ibex_horn.gd" id="1_at6bv"]
-[ext_resource type="PackedScene" uid="uid://ne04xksjgtrw" path="res://Assets_in_Progress/Horns/Ibex_Horns.glb" id="2_e3g2k"]
+[ext_resource type="PackedScene" uid="uid://c2y4y8dkrjq7r" path="res://Assets_in_Progress/Horns/Ibex_Horns.glb" id="2_e3g2k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lg3ih"]
 size = Vector3(10, 10, 10)

@@ -10,10 +10,12 @@ func handle_movement(delta: float) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	super()
 	add_to_group("enemy")
 	await get_tree().process_frame
 	target = get_tree().get_first_node_in_group("player")
 	hostile = false
+	TAG = "ENERMY"
 
 
 

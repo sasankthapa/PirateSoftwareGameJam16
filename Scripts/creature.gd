@@ -4,14 +4,14 @@ class_name Creature
 @onready var body: Node3D = $body
 ## Base stats
 var BASE_MAX_HP: float = 100
-var BASE_DEFENSE: float = 1.0
-var BASE_ATTACK: float = 1.0
+var BASE_DEFENSE: float = 10.0
+var BASE_ATTACK: float = 10.0
 
-var BASE_SPEED: float = 50
-var BASE_ACCELERATION: float = 100
-var BASE_JUMP_VELOCITY : float = 20
-var BASE_ROTATION_SPEED : float = 10
-var BASE_DODGE_SPEED: float = 30
+var BASE_SPEED: float = 50.0
+var BASE_ACCELERATION: float = 100.0
+var BASE_JUMP_VELOCITY : float = 20.0
+var BASE_ROTATION_SPEED : float = 10.0
+var BASE_DODGE_SPEED: float = 30.0
 
 var BASE_CHARGE_VAL: float = 0
 var BASE_CHARGE_SPEED:float = 2
@@ -275,6 +275,7 @@ func handle_knockback(bodyVel:Vector3, power:float) -> void:
 
 
 func calcDamage(from: Creature, to: Creature) -> float:
+	print((from.ATTACK)/(to.DEFENSE)*from.SPEED/2)
 	return (from.ATTACK)/(to.DEFENSE)*from.SPEED/2
 
 	
@@ -296,6 +297,9 @@ func rotate_to_direction(direction: Vector3, delta: float) -> void:
 	
 func get_attack():
 	return ATTACK
+	
+func get_defense():
+	return DEFENSE
 
 func stop_movement() -> void:
 	velocity.x = 0

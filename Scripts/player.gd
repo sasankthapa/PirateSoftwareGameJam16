@@ -164,13 +164,12 @@ func handle_attack(enemy_body:CharacterBody3D):
 	if(enemy_body.has_method("handle_knockback")):
 		enemy_body.handle_knockback(velocity.normalized(),30.0)
 		enemy_body.take_damage(calcDamage(self, enemy_body))
-	pass
+	
 	
 func _on_area_3d_body_entered(body: Node3D) -> void: #ok, we handle every collision here for now.
-
 	if body.is_in_group("enemy"):
+		print(body.HP)
+		print(body.ATTACK)
 		handle_attack(body as CharacterBody3D)
-		print("ah its a bad dude")
 	if body.is_in_group("horn"):
-		print("noehauntaoneuha")
 		collectHorn.emit(body as Horn)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://yy46yjk7hneq"]
 
-[ext_resource type="Script" path="res://Scripts/sheep.gd" id="1_2gfkk"]
-[ext_resource type="PackedScene" uid="uid://cxadgcofoo1xx" path="res://Assets_in_Progress/Sheep.glb" id="1_3ebca"]
+[ext_resource type="PackedScene" uid="uid://chy06arwvctei" path="res://Assets_in_Progress/Sheep.glb" id="1_3ebca"]
+[ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="1_hy1yq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xh1k8"]
 size = Vector3(4.58514, 5.19998, 6.60611)
@@ -9,7 +9,7 @@ size = Vector3(4.58514, 5.19998, 6.60611)
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_pg5r0"]
 
 [node name="Sheep" type="CharacterBody3D"]
-script = ExtResource("1_2gfkk")
+script = ExtResource("1_hy1yq")
 
 [node name="body" parent="." instance=ExtResource("1_3ebca")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.54554, 0)
