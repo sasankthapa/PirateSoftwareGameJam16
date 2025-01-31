@@ -80,8 +80,10 @@ speed_scale = 4.02
 process_material = SubResource("ParticleProcessMaterial_1c8aq")
 draw_pass_1 = SubResource("PlaneMesh_nrgta")
 
-[node name="bodyCollision" type="CollisionShape3D" parent="body"]
-transform = Transform3D(-4.37107e-08, 0, -1, 0, 1, 0, 1, 0, -4.37107e-08, -1.23178e-08, -0.0527499, 0.281799)
+[node name="Area3D" type="Area3D" parent="body"]
+
+[node name="bodyCollision" type="CollisionShape3D" parent="body/Area3D"]
+transform = Transform3D(-4.37107e-08, 0, -1, 0, 1, 0, 1, 0, -4.37107e-08, -1.23178e-08, -0.05275, 0.281799)
 shape = SubResource("BoxShape3D_nosyu")
 
 [node name="dodge_time" type="Timer" parent="."]
