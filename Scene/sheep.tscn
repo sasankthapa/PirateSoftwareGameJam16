@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://yy46yjk7hneq"]
+
+[ext_resource type="PackedScene" uid="uid://cxadgcofoo1xx" path="res://Assets_in_Progress/Sheep.glb" id="1_3ebca"]
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_pg5r0"]
+
+[node name="Sheep" type="Node3D"]
+
+[node name="Sheep" parent="." instance=ExtResource("1_3ebca")]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationRootNode_pg5r0")
