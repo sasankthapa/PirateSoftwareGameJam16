@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4gcnu2u1jdlh"]
+
+[ext_resource type="Script" path="res://Scripts/Buffalo.gd" id="1_i4606"]
+[ext_resource type="PackedScene" uid="uid://ne04xksjgtrw" path="res://Assets_in_Progress/Horns/Ibex_Horns.glb" id="2_q5bsd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lg3ih"]
+size = Vector3(10, 10, 10)
+
+[node name="BuffaloHorn" type="Node3D"]
+script = ExtResource("1_i4606")
+
+[node name="Ibex_Horns" parent="." instance=ExtResource("2_q5bsd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5588, 6.64777, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("BoxShape3D_lg3ih")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

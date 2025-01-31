@@ -87,8 +87,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_hhspb")
 
-[node name="IbexHorn" type="Node" parent="EquipManager"]
-
 [node name="Player" parent="." instance=ExtResource("8_xriv4")]
 
 [node name="GameManager" type="Control" parent="."]

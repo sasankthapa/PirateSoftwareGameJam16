@@ -36,4 +36,5 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_collect_horn(hornName:Horn):
+	print("meoumoeu")
 	hornName.collected = true

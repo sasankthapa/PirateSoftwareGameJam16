@@ -152,9 +152,10 @@ func handle_attack(enemy_body:CharacterBody3D):
 	pass
 	
 func _on_area_3d_body_entered(body: Node3D) -> void: #ok, we handle every collision here for now.
+
 	if body.is_in_group("enemy"):
 		handle_attack(body as CharacterBody3D)
 		print("ah its a bad dude")
-	elif body.is_in_group("horn"):
+	if body.is_in_group("horn"):
+		print("noehauntaoneuha")
 		collectHorn.emit(body as Horn)
-	pass # Replace with function body.
