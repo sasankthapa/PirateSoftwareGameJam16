@@ -4,10 +4,10 @@ class_name ImpalaHorn
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	super._init(1.0,1.0) # (Attack, Defense)
+	super._init(1.0,0.3) # (Attack, Defense)
 	
 func add_passive_power() -> void:
-	player.add_modifier("JUMP_VELOCITY", "Impala_horn_passive", 2.0, true)
+	player.add_modifier("JUMP_VELOCITY", "Impala_horn_passive", 10.0, true)
 
 func remove_passive_power()-> void:
 	player.remove_modifier("JUMP_VELOCITY","Impala_horn_passive" )

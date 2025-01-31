@@ -3,7 +3,7 @@ extends Control
 @onready var player: Player 
 
 func calcDamage(from: Creature, to: Creature) -> float:
-	return (from.ATTACK)/(to.DEFENSE)*from.SPEED
+	return (from.ATTACK)/(to.DEFENSE)*from.SPEED/2
 	pass
 	
 # Called when the node enters the scene tree for the first time.

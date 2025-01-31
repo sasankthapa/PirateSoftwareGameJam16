@@ -4,11 +4,11 @@ class_name IbexHorn
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
-	super._init(1.0,1.0) # (Attack, Defense)
+	super._init(4.0,0.1) # (Attack, Defense)
 	
 
 func add_passive_power() -> void:
-	player.add_modifier("CHARGE_SPEED", "Ibex_horn_passive", 1.0, true)
+	player.add_modifier("CHARGE_SPEED", "Ibex_horn_passive", 2.0, true)
 
 func remove_passive_power()-> void:
 	player.remove_modifier("CHARGE_SPEED","Ibex_horn_passive" )

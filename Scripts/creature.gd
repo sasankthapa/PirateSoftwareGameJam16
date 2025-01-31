@@ -4,9 +4,9 @@ class_name Creature
 @onready var body: Node3D = $body
 
 ## Base stats
-var BASE_MAX_HP: float = 100.0
-var BASE_DEFENSE: float = 0.0
-var BASE_ATTACK: float = 0.0
+var BASE_MAX_HP: float = 100
+var BASE_DEFENSE: float = 1.0
+var BASE_ATTACK: float = 1.0
 
 var BASE_SPEED: float = 50
 var BASE_ACCELERATION: float = 100
@@ -163,7 +163,7 @@ func _recalculate_stat(stat_name: String):
 	var total_multiplier: float = 1.0
 	for modifier in modifier_dict.values():
 		if modifier["is_multiplier"]:
-			total_multiplier *= (1.0 + modifier["value"])
+			total_multiplier *= modifier["value"]
 	
 	# Apply multiplier to base value
 	var after_multipliers = base_value * total_multiplier
