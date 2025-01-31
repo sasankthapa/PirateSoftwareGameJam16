@@ -8,7 +8,7 @@ func _ready() -> void:
 	
 
 func add_passive_power() -> void:
-	player.add_modifier("CHARGE_SPEED", "Ibex_horn_passive", 3.0, true)
+	player.add_modifier("CHARGE_SPEED", "Ibex_horn_passive", 1.0, true)
 
 func remove_passive_power()-> void:
 	player.remove_modifier("CHARGE_SPEED","Ibex_horn_passive" )

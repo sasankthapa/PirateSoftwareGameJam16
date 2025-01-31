@@ -49,8 +49,10 @@ var is_rolling = false
 var hp_modifiers: Dictionary = {}
 var speed_modifiers: Dictionary = {}
 var charge_speed_modifiers: Dictionary = {}
+var max_charge_modifiers: Dictionary = {}
 var attack_modifiers: Dictionary = {}
 var defense_modifiers: Dictionary = {}
+var jump_velocity_modifiers: Dictionary = {}
 
 
 
@@ -110,6 +112,8 @@ func _get_modifier_dict(stat_name: String) -> Dictionary:
 		"ATTACK": return attack_modifiers
 		"DEFENSE": return defense_modifiers
 		"CHARGE_SPEED": return charge_speed_modifiers
+		"MAX_CHARGE": return max_charge_modifiers
+		"JUMP_VELOCITY": return jump_velocity_modifiers
 		_: return {}
 
 # Helper function to get the base stat value
@@ -120,16 +124,20 @@ func _get_base_stat(stat_name: String) -> float:
 		"ATTACK": return BASE_ATTACK
 		"DEFENSE": return BASE_DEFENSE
 		"CHARGE_SPEED": return BASE_CHARGE_SPEED
+		"MAX_CHARGE": return BASE_MAX_CHARGE
+		"JUMP_VELOCITY": return BASE_JUMP_VELOCITY
 		_: return 0.0
 
 # Helper function to get the current stat value
 func _get_current_stat(stat_name: String) -> float:
 	match stat_name:
-		"MAX_HP": return MAX_HP
-		"SPEED": return SPEED
-		"ATTACK": return ATTACK
-		"DEFENSE": return DEFENSE
-		"CHARGE_SPEED": return CHARGE_SPEED
+		"MAX_HP" : return MAX_HP
+		"SPEED" : return SPEED
+		"ATTACK" : return ATTACK
+		"DEFENSE" : return DEFENSE
+		"CHARGE_SPEED" : return CHARGE_SPEED
+		"MAX_CHARGE" :return MAX_CHARGE
+		"JUMP_VELOCITY": return JUMP_VELOCITY
 		_: return 0.0
 
 # Helper function to set the current stat value
@@ -140,6 +148,8 @@ func _set_current_stat(stat_name: String, value: float):
 		"ATTACK": ATTACK = value
 		"DEFENSE": DEFENSE = value
 		"CHARGE_SPEED": CHARGE_SPEED = value
+		"MAX_CHARGE" : MAX_CHARGE = value
+		"JUMP_VELOCITY" : JUMP_VELOCITY = value
 	
 
 # Recalculate a specific stat based on its base value and all modifiers

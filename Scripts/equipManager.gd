@@ -20,13 +20,11 @@ func _ready() -> void:
 	bullHorn = get_node("/root/World1/Player/BullHorn")
 	buffaloHorn = get_node("/root/World1/Player/BuffaloHorn")
 	
-	
 	player.unequip_horn.connect(_on_unequip_horn)
 	player.equip_horn.connect(_on_equip_horn)
 	
 	
 func _on_equip_horn(hornName):
-
 	hornName.enable_passive()
 	
 func _on_unequip_horn(hornName):

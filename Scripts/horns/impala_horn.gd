@@ -7,10 +7,10 @@ func _ready() -> void:
 	super._init(1.0,1.0) # (Attack, Defense)
 	
 func add_passive_power() -> void:
-	player.add_modifier("CHARGE_SPEED", "Impala_horn_passive", 3.0, true)
+	player.add_modifier("JUMP_VELOCITY", "Impala_horn_passive", 2.0, true)
 
 func remove_passive_power()-> void:
-	player.remove_modifier("CHARGE_SPEED","Impala_horn_passive" )
+	player.remove_modifier("JUMP_VELOCITY","Impala_horn_passive" )
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
