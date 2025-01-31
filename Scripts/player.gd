@@ -6,6 +6,7 @@ class_name Player
 @onready var equipMan = get_node("/root/World1/EquipManager")
 @onready var animationTree = $body/PlayerDeer/AnimationTree
 @onready var state_machine = animationTree.get("parameters/playback")
+@onready var run_sound = $"../run_sound"
 
 
 var _last_movement_direction = Vector3.FORWARD
@@ -78,6 +79,19 @@ func process_player_physics(delta):
 	if Input.is_action_just_pressed("Equip"):
 		horn_1 = equipMan.ibexHorn
 		
+func move_in_direction(direction: Vector3, delta: float) -> void:
+	if direction:
+		if !run_sound.playing:
+			run_sound.play()
+		rotate_to_direction(direction, delta)
+		var yy = velocity.y
+		velocity = velocity.move_toward(direction * SPEED, ACCELERATION*delta)
+		velocity.y = yy
+
+
+	else:
+		run_sound.playing = false
+		stop_movement()		
 
 func jump():
 	if not _is_deer:

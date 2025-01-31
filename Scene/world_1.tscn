@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=19 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://yy46yjk7hneq" path="res://Scene/sheep.tscn" id="1_cauor"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
-[ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
+[ext_resource type="PackedScene" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
 [ext_resource type="PackedScene" uid="uid://4jhfr1awtoff" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" path="res://gameManager.gd" id="10_ao2ib"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
 [ext_resource type="PackedScene" uid="uid://c6sw3pd5cr7uu" path="res://Scene/IbexHorn.tscn" id="12_u1wl3"]
+[ext_resource type="AudioStream" uid="uid://c88x7a50ny2tk" path="res://Assets_in_Progress/foley/walk-on-grass-1-291984.mp3" id="13_ve3wr"]
+[ext_resource type="AudioStream" uid="uid://bhhf6i72l3eft" path="res://Assets_in_Progress/foley/forest-sounds.mp3" id="14_pwkd4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -89,6 +91,9 @@ script = ExtResource("8_hhspb")
 
 [node name="Player" parent="." instance=ExtResource("8_xriv4")]
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Player"]
+current = true
+
 [node name="GameManager" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -99,3 +104,12 @@ script = ExtResource("10_ao2ib")
 
 [node name="IbexHorn" parent="." instance=ExtResource("12_u1wl3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.8545, 0, 39.5568)
+
+[node name="run_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ve3wr")
+volume_db = -16.365
+
+[node name="forest_sounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_pwkd4")
+volume_db = -37.0
+autoplay = true

@@ -2,7 +2,6 @@ extends CharacterBody3D
 class_name Creature
 
 @onready var body: Node3D = $body
-
 ## Base stats
 var BASE_MAX_HP: float = 100
 var BASE_DEFENSE: float = 1.0
@@ -276,7 +275,6 @@ func handle_knockback(bodyVel:Vector3, power:float) -> void:
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
 		rotate_to_direction(direction, delta)
-
 		var yy = velocity.y
 		velocity = velocity.move_toward(direction * SPEED, ACCELERATION*delta)
 		velocity.y = yy
