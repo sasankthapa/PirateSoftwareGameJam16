@@ -8,10 +8,10 @@ func _ready() -> void:
 	
 
 func add_passive_power() -> void:
-	player.add_modifier("CHARGE_SPEED", "Ibex_horn_passive", 2.0, true)
+	player.add_modifier("CHARGE_SPEED", "horn_passive", 2.0, true)
 
 func remove_passive_power()-> void:
-	player.remove_modifier("CHARGE_SPEED","Ibex_horn_passive" )
+	player.remove_modifier("CHARGE_SPEED","horn_passive" )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

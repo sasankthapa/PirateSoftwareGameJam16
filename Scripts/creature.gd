@@ -15,7 +15,7 @@ var BASE_DODGE_SPEED: float = 30.0
 
 var BASE_CHARGE_VAL: float = 0
 var BASE_CHARGE_SPEED:float = 2
-var BASE_MAX_CHARGE: float = 5
+var BASE_MAX_CHARGE: float = 51
 
 var BASE_WEIGHT: float = 20.0
 
@@ -23,7 +23,7 @@ var TAG = "Creature"
 
 
 ## Current States
-var HP: float
+@export var HP: float = BASE_MAX_HP
 var MAX_HP: float
 var DEFENSE: float
 var ATTACK: float
@@ -98,6 +98,8 @@ func intialize():
 # Add a modifier to a specific stat
 func add_modifier(stat_name: String, modifier_id: String, value: float, is_multiplier: bool = false):
 	var modifier_dict = _get_modifier_dict(stat_name)
+	if modifier_dict.has(modifier_id):
+		modifier_dict.erase(modifier_id)
 	modifier_dict[modifier_id] = {"value": value, "is_multiplier": is_multiplier}
 	_recalculate_stat(stat_name)
 
@@ -275,7 +277,6 @@ func handle_knockback(bodyVel:Vector3, power:float) -> void:
 
 
 func calcDamage(from: Creature, to: Creature) -> float:
-	print((from.ATTACK)/(to.DEFENSE)*from.SPEED/2)
 	return (from.ATTACK)/(to.DEFENSE)*from.SPEED/2
 
 	

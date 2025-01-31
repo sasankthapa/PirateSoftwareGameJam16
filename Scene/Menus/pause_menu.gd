@@ -1,6 +1,8 @@
 extends Control
 
 @onready var pause_menu: Control = $"."
+@onready var equipMenu: EquipMan = get_node("/root/World1/EquipManager")
+
 var paused = false
 
 # Called when the node enters the scene tree for the first time.
@@ -33,3 +35,52 @@ func _on_options_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_ibex_pressed() -> void:
+	equipMenu.tempHornSelect = equipMenu.ibexHorn
+
+func _on_deer_pressed() -> void:
+	equipMenu.tempHornSelect = equipMenu.deerHorn
+
+
+func _on_elk_pressed() -> void:
+	equipMenu.tempHornSelect = equipMenu.elkHorn
+
+
+func _on_bull_pressed() -> void:
+	equipMenu.tempHornSelect = equipMenu.bullHorn
+
+
+func _on_buffalo_pressed() -> void:
+	equipMenu.tempHornSelect = equipMenu.buffaloHorn
+
+
+func _on_impala_pressed() -> void:
+	equipMenu.tempHornSelect = equipMenu.impalaHorn
+	
+
+
+func _on_passive_pressed() -> void:
+	if equipMenu.passiveHornSelect:
+		equipMenu.player.unequip_horn.emit(equipMenu.passiveHornSelect)
+	equipMenu.player.equip_horn.emit(equipMenu.tempHornSelect)
+	equipMenu.passiveHornSelect = equipMenu.tempHornSelect
+	equipMenu.passiveHornSelect.add_passive_power()
+	
+
+
+func _on_attack_pressed() -> void:
+	if equipMenu.activeHornSelect:
+		equipMenu.player.unequip_horn.emit(equipMenu.activeHornSelect)
+	equipMenu.player.equip_horn.emit(equipMenu.tempHornSelect)
+	equipMenu.activeHornSelect = equipMenu.tempHornSelect
+	equipMenu.passiveHornSelect.add_active_power()
+
+
+func _on_defense_pressed() -> void:
+	if equipMenu.blockHornSelect:
+		equipMenu.player.unequip_horn.emit(equipMenu.blockHornSelect)
+	equipMenu.player.equip_horn.emit(equipMenu.tempHornSelect)
+	equipMenu.blockHornSelect = equipMenu.tempHornSelect
+	equipMenu.passiveHornSelect.add_block_power()

@@ -13,7 +13,7 @@ var _last_movement_direction = Vector3.FORWARD
 var _facing_direction = Vector3.FORWARD
 
 var _single_jump: bool
-var _is_deer: bool = true
+var _is_deer: bool = false
 
 signal ram
 signal charge_change
@@ -21,10 +21,6 @@ signal equip_horn(hornName:Horn)
 signal collectHorn(hornName:Horn)
 signal unequip_horn(hornName:Horn)
 
-#Horns
-var horn_1 : Horn = null
-var horn_2 : Horn = null
-var horn_3 : Horn = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -73,11 +69,8 @@ func process_player_physics(delta):
 		state_machine.travel("Deer_Charge") #play charge animation
 	
 	if Input.is_action_pressed("DODGE"):
-		equip_horn.emit(horn_1)
-		#dodge_left()
+		dodge_left()
 		
-	if Input.is_action_just_pressed("Equip"):
-		horn_1 = equipMan.ibexHorn
 		
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
@@ -163,13 +156,12 @@ func align_camera_to_player():
 func handle_attack(enemy_body:CharacterBody3D):
 	if(enemy_body.has_method("handle_knockback")):
 		enemy_body.handle_knockback(velocity.normalized(),30.0)
+		self.take_damage(calcDamage(enemy_body, self))
 		enemy_body.take_damage(calcDamage(self, enemy_body))
 	
 	
 func _on_area_3d_body_entered(body: Node3D) -> void: #ok, we handlwe every collision here for now.
 	if body.is_in_group("enemy"):
-		print(body.HP)
-		print(body.ATTACK)
 		handle_attack(body as CharacterBody3D)
 	if body.is_in_group("horn"):
 		collectHorn.emit(body as Horn)

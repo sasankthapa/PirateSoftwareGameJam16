@@ -67,9 +67,15 @@ func uneqip():
 	is_passive_enabled = false
 	is_active_enabled = false
 	is_blocking_enabled = false
+	visible = false
+	equipped = false
 	remove_passive_power()
 	player.remove_modifier("ATTACK", "Horn")
 	player.remove_modifier("DEFENSE", "Horn")
+	
+func eqip():
+	visible = true
+	equipped = true
 
 
 func get_blocking_power() -> float:
