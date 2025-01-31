@@ -43,6 +43,7 @@ var is_dodging: bool = false
 var is_charging:bool = false
 var is_charged:bool = false
 var is_rolling = false
+var is_attacking:bool = false
 
 
 # Dictionary to store modifiers for each stat
@@ -233,7 +234,9 @@ func dodge_roll(dir:String):
 
 	
 func attack():
-	pass
+	is_attacking = true
+	# TODO Animation timer
+	is_attacking = false
 	
 func block():
 	pass

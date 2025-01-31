@@ -7,10 +7,10 @@ func _ready() -> void:
 	super._init(1.0,1.0) # (Attack, Defense)
 	
 func add_passive_power() -> void:
-	player.add_modifier("CHARGE_SPEED", "Deer_horn_passive", 3.0, true)
-
+	player._is_deer = true
+	
 func remove_passive_power()-> void:
-	player.remove_modifier("CHARGE_SPEED","Deer_horn_passive" )
+	player._is_deer = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
