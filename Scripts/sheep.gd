@@ -33,9 +33,6 @@ func _physics_process(delta):
 	if movement_timer >= current_movement_duration:
 		movement_timer = 0.0
 		is_moving = false
-		
-	if not is_moving:
-		handle_movement(delta)
 
 func _ready():
 	super()
@@ -43,3 +40,12 @@ func _ready():
 	ACCELERATION = 10.0
 	ROTATION_SPEED = 2.0
 	
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		var bbody = body as CharacterBody3D
+		print("SHEEP FLYING")
+		if bbody.has_method("get_attack"):
+			print(bbody.get_attack())
+			handle_knockback(bbody.velocity.normalized(),bbody.get_attack()+bbody.velocity.length())
+		else:
+			print("NOOO")

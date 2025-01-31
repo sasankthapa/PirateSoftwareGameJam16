@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b5ai527yj2ch2"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2v7et"]
-[ext_resource type="PackedScene" uid="uid://c034imcwmkyi2" path="res://Assets_in_Progress/Player_Deer.tscn" id="2_5x83v"]
+[ext_resource type="PackedScene" path="res://Assets_in_Progress/Player_Deer.tscn" id="2_5x83v"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_r2u5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sp07c"]
@@ -39,7 +39,7 @@ speed_scale = 4.02
 process_material = SubResource("ParticleProcessMaterial_gvg33")
 draw_pass_1 = SubResource("PlaneMesh_t2kiv")
 
-[node name="Area3D" type="Area3D" parent="body"]
+[node name="Area3D" type="Area3D" parent="body" groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0330505, 8.26358, 3.6828)
 
 [node name="HornCollision" type="CollisionShape3D" parent="body/Area3D"]

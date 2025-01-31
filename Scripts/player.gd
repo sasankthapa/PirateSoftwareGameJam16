@@ -28,6 +28,7 @@ var horn_3 : Horn = null
 func _ready() -> void:
 	add_to_group("player")
 	BASE_MAX_HP = 1000
+	BASE_ATTACK = 20.0
 	super()
 	TAG = "PLAYER"
 	animationTree.active = true
@@ -43,7 +44,6 @@ func _physics_process(delta):
 func process_player_physics(delta):
 	if Input.is_action_just_pressed("Jump"): # use space button to chargeVal
 		jump()
-	print(_single_jump)
 	
 		
 	if Input.is_action_pressed("Centre"):
@@ -86,7 +86,6 @@ func jump():
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
 			_single_jump = true
-			print(_single_jump)
 		elif _single_jump:
 			velocity.y = JUMP_VELOCITY
 			_single_jump = false
@@ -147,7 +146,6 @@ func align_camera_to_player():
 		camera.rotation.y = target_rot
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print("meowmeowmewomemowmewo")
 	if is_in_group("enemy"):
 		print("ah its a bad dude")
 	pass # Replace with function body.

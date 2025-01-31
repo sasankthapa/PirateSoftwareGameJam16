@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Scripts/sheep.gd" id="1_2gfkk"]
 [ext_resource type="PackedScene" uid="uid://cxadgcofoo1xx" path="res://Assets_in_Progress/Sheep.glb" id="1_3ebca"]
 
-[sub_resource type="AnimationRootNode" id="AnimationRootNode_pg5r0"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_xh1k8"]
-size = Vector3(1, 3.44586, 5.10608)
+size = Vector3(4.58514, 5.19998, 6.60611)
+
+[sub_resource type="AnimationRootNode" id="AnimationRootNode_pg5r0"]
 
 [node name="Sheep" type="CharacterBody3D"]
 script = ExtResource("1_2gfkk")
@@ -14,9 +14,18 @@ script = ExtResource("1_2gfkk")
 [node name="body" parent="." instance=ExtResource("1_3ebca")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 2.54554, 0)
 
+[node name="Area3D" type="Area3D" parent="body"]
+transform = Transform3D(0.666667, 0, 0, 0, 0.666667, 0, 0, 0, 0.666667, 0, -1.69702, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0297546, 2.61205, 0.254532)
+shape = SubResource("BoxShape3D_xh1k8")
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationRootNode_pg5r0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.73499, 0.491516)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58985, 0.491516)
 shape = SubResource("BoxShape3D_xh1k8")
+
+[connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]

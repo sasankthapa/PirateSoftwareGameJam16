@@ -18,6 +18,8 @@ var BASE_CHARGE_VAL: float = 0
 var BASE_CHARGE_SPEED:float = 2
 var BASE_MAX_CHARGE: float = 5
 
+var BASE_WEIGHT: float = 20.0
+
 var TAG = "Creature"
 
 
@@ -36,6 +38,8 @@ var DODGE_SPEED: float
 var CHARGE_VAL: float
 var CHARGE_SPEED:float
 var MAX_CHARGE: float
+
+var WEIGHT: float
 
 ## Flags
 var is_ramming:bool = false
@@ -264,7 +268,10 @@ func apply_gravity(delta: float) -> void:
 		
 func handle_movement(delta: float) -> void:
 	pass
-	
+
+func handle_knockback(bodyVel:Vector3, power) -> void:
+	velocity = bodyVel * power
+	velocity.y += power
 	
 func move_in_direction(direction: Vector3, delta: float) -> void:
 	if direction:
@@ -283,6 +290,8 @@ func rotate_to_direction(direction: Vector3, delta: float) -> void:
 	var current_rotation = body.global_rotation.y
 	body.global_rotation.y = lerp_angle(current_rotation, target_rotation, ROTATION_SPEED * delta)
 	
+func get_attack():
+	return ATTACK
 
 func stop_movement() -> void:
 	velocity.x = 0

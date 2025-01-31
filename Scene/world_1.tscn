@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://c76byv85cp5x"]
 
-[ext_resource type="PackedScene" path="res://Scene/sheep.tscn" id="1_cauor"]
+[ext_resource type="PackedScene" uid="uid://yy46yjk7hneq" path="res://Scene/sheep.tscn" id="1_cauor"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
 [ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
 [ext_resource type="PackedScene" uid="uid://4jhfr1awtoff" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
