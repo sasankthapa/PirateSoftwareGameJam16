@@ -9,7 +9,7 @@ var player : Player = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	await get_tree().process_frame
-	hud = get_node("/root/World1/CanvasLayer/PLAYERHUD")
+	hud = get_node("/root/World1Final/CanvasLayer/PLAYERHUD")
 	
 	if hud == null:
 		print("ERROR, hud is null")
