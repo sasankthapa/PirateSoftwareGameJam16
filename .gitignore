@@ -14,7 +14,7 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
-/*.import
+**/*.import
 
 # Local testing scripts
 test*.gd
