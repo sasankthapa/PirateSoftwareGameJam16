@@ -1,26 +1,33 @@
-[gd_scene load_steps=27 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=34 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://yy46yjk7hneq" path="res://Scene/sheep.tscn" id="1_cauor"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
-[ext_resource type="PackedScene" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
+[ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
 [ext_resource type="PackedScene" uid="uid://4jhfr1awtoff" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
 [ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="6_ksiss"]
 [ext_resource type="Script" path="res://Scripts/equipManager.gd" id="8_hhspb"]
 [ext_resource type="PackedScene" uid="uid://b5ai527yj2ch2" path="res://Scene/PlayerV2.tscn" id="8_xriv4"]
+[ext_resource type="Script" path="res://Scripts/horns/buffalo_horn.gd" id="10_42rvn"]
 [ext_resource type="Script" path="res://gameManager.gd" id="10_ao2ib"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
+[ext_resource type="Script" path="res://Scripts/horns/bull_horn.gd" id="11_o5tyq"]
+[ext_resource type="Script" path="res://Scripts/horns/deer_horn.gd" id="12_q50en"]
 [ext_resource type="PackedScene" uid="uid://c6sw3pd5cr7uu" path="res://Scene/IbexHorn.tscn" id="12_u1wl3"]
-[ext_resource type="AudioStream" uid="uid://c88x7a50ny2tk" path="res://Assets_in_Progress/foley/walk-on-grass-1-291984.mp3" id="13_ve3wr"]
-[ext_resource type="AudioStream" uid="uid://bhhf6i72l3eft" path="res://Assets_in_Progress/foley/forest-sounds.mp3" id="14_pwkd4"]
-[ext_resource type="AudioStream" uid="uid://bycuh8fmsv5lo" path="res://Assets_in_Progress/music/1m_mysterious.mp3" id="15_8saoo"]
-[ext_resource type="AudioStream" uid="uid://c13t4w5mny3uj" path="res://Assets_in_Progress/music/a_little_bit_intense_bassy.mp3" id="16_6gbos"]
-[ext_resource type="AudioStream" uid="uid://dvynxm7wuqstk" path="res://Assets_in_Progress/music/distorted_upbeat_fight.mp3" id="17_udguf"]
-[ext_resource type="AudioStream" uid="uid://dqt50ye5wgncd" path="res://Assets_in_Progress/music/here_comes_the_ram.mp3" id="18_knjw2"]
-[ext_resource type="AudioStream" uid="uid://bnmxu285a4myn" path="res://Assets_in_Progress/music/in_my_life.mp3" id="19_1fg10"]
-[ext_resource type="AudioStream" uid="uid://bochif6qe4vvg" path="res://Assets_in_Progress/music/ramthesheep.mp3" id="20_xh3d4"]
-[ext_resource type="AudioStream" uid="uid://cpfokuoyu0is3" path="res://Assets_in_Progress/music/take_a_ram_at_me.mp3" id="21_kn8px"]
+[ext_resource type="Script" path="res://Scripts/horns/elk_horn.gd" id="13_8e2do"]
+[ext_resource type="AudioStream" uid="uid://ca6fucygbbvql" path="res://Assets_in_Progress/foley/walk-on-grass-1-291984.mp3" id="13_ve3wr"]
+[ext_resource type="AudioStream" uid="uid://p7pwf2wrkxeu" path="res://Assets_in_Progress/foley/forest-sounds.mp3" id="14_pwkd4"]
+[ext_resource type="Script" path="res://Scripts/horns/ibex_horn.gd" id="14_yf41l"]
+[ext_resource type="AudioStream" uid="uid://c144hajudn0ao" path="res://Assets_in_Progress/music/1m_mysterious.mp3" id="15_8saoo"]
+[ext_resource type="Script" path="res://Scripts/horns/impala_horn.gd" id="15_dg2ea"]
+[ext_resource type="AudioStream" uid="uid://bsecd2mlxuscs" path="res://Assets_in_Progress/music/a_little_bit_intense_bassy.mp3" id="16_6gbos"]
+[ext_resource type="Script" path="res://Scripts/horns/ram_horn.gd" id="16_kqcvt"]
+[ext_resource type="AudioStream" uid="uid://csnk3f1yop3m1" path="res://Assets_in_Progress/music/distorted_upbeat_fight.mp3" id="17_udguf"]
+[ext_resource type="AudioStream" uid="uid://bceqfu06w57m3" path="res://Assets_in_Progress/music/here_comes_the_ram.mp3" id="18_knjw2"]
+[ext_resource type="AudioStream" uid="uid://bi3w4yd0fcu44" path="res://Assets_in_Progress/music/in_my_life.mp3" id="19_1fg10"]
+[ext_resource type="AudioStream" uid="uid://bj4nlh3buxkan" path="res://Assets_in_Progress/music/ramthesheep.mp3" id="20_xh3d4"]
+[ext_resource type="AudioStream" uid="uid://cs5nrkkqaljuh" path="res://Assets_in_Progress/music/take_a_ram_at_me.mp3" id="21_kn8px"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
 size = Vector2(200, 200)
@@ -81,6 +88,7 @@ shape = SubResource("ConcavePolygonShape3D_x4l04")
 [node name="EnemyRam" parent="." instance=ExtResource("10_vx0s0")]
 transform = Transform3D(-0.999955, 0, 0.00951189, 0, 1, 0, -0.00951189, 0, -0.999955, 24.4507, 0.0927792, 21.205)
 script = ExtResource("6_ksiss")
+HP = null
 
 [node name="DeerCreature" parent="." instance=ExtResource("4_fae0y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.288, 0, 14.706)
@@ -108,6 +116,27 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_hhspb")
+
+[node name="BuffaloHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("10_42rvn")
+
+[node name="BullHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("11_o5tyq")
+
+[node name="DeerHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("12_q50en")
+
+[node name="ElkHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("13_8e2do")
+
+[node name="IbexHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("14_yf41l")
+
+[node name="ImpalaHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("15_dg2ea")
+
+[node name="RamHorn" type="Node3D" parent="EquipManager"]
+script = ExtResource("16_kqcvt")
 
 [node name="Player" parent="." instance=ExtResource("8_xriv4")]
 

@@ -4,7 +4,7 @@ class_name EquipMan
 var player:Player
 var ibexHorn:IbexHorn = null
 var deerHorn:DeerHorn = null
-var imapalaHorn:ImpalaHorn = null
+var impalaHorn:ImpalaHorn = null
 var bullHorn:BullHorn = null
 var elkHorn:ElkHorn = null
 var buffaloHorn:BuffaloHorn = null
@@ -19,12 +19,12 @@ var blockHornSelect: Horn = null
 func _ready() -> void:
 	await get_tree().process_frame 
 	player = get_tree().get_first_node_in_group("player")
-	ibexHorn = get_node("/root/World1/EquipManager/IbexHorn")
-	deerHorn = get_node("/root/World1/EquipManager/DeerHorn")
-	imapalaHorn = get_node("/root/World1/EquipManager/ImpalaHorn")
-	elkHorn = get_node("/root/World1/EquipManager/ElkHorn")
-	bullHorn = get_node("/root/World1/EquipManager/BullHorn")
-	buffaloHorn = get_node("/root/World1/EquipManager/BuffaloHorn")
+	ibexHorn = get_node("/root/World1Final/EquipManager/IbexHorn")
+	deerHorn = get_node("/root/World1Final/EquipManager/DeerHorn")
+	impalaHorn = get_node("/root/World1Final/EquipManager/ImpalaHorn")
+	elkHorn = get_node("/root/World1Final/EquipManager/ElkHorn")
+	bullHorn = get_node("/root/World1Final/EquipManager/BullHorn")
+	buffaloHorn = get_node("/root/World1Final/EquipManager/BuffaloHorn")
 
 	player.unequip_horn.connect(_on_unequip_horn)
 	player.equip_horn.connect(_on_equip_horn)

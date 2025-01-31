@@ -1,7 +1,7 @@
 extends Control
 
 @onready var pause_menu: Control = $"."
-@onready var equipMenu: EquipMan = get_node("/root/World1/EquipManager")
+@onready var equipMenu: EquipMan = get_node("/root/World1Final/EquipManager")
 
 var paused = false
 
@@ -66,7 +66,7 @@ func _on_passive_pressed() -> void:
 		equipMenu.player.unequip_horn.emit(equipMenu.passiveHornSelect)
 	equipMenu.player.equip_horn.emit(equipMenu.tempHornSelect)
 	equipMenu.passiveHornSelect = equipMenu.tempHornSelect
-	equipMenu.passiveHornSelect.add_passive_power()
+	equipMenu.passiveHornSelect.enable_passive()
 	
 
 
@@ -75,7 +75,7 @@ func _on_attack_pressed() -> void:
 		equipMenu.player.unequip_horn.emit(equipMenu.activeHornSelect)
 	equipMenu.player.equip_horn.emit(equipMenu.tempHornSelect)
 	equipMenu.activeHornSelect = equipMenu.tempHornSelect
-	equipMenu.passiveHornSelect.add_active_power()
+	equipMenu.activeHornSelect.enable_active()
 
 
 func _on_defense_pressed() -> void:
@@ -83,4 +83,4 @@ func _on_defense_pressed() -> void:
 		equipMenu.player.unequip_horn.emit(equipMenu.blockHornSelect)
 	equipMenu.player.equip_horn.emit(equipMenu.tempHornSelect)
 	equipMenu.blockHornSelect = equipMenu.tempHornSelect
-	equipMenu.passiveHornSelect.add_block_power()
+	equipMenu.blockHornSelect.enable_blocking()
