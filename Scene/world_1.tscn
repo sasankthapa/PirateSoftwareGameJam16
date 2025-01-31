@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
 [ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="6_ksiss"]
-[ext_resource type="Script" path="res://Scripts/ibex_horn.gd" id="10_envsg"]
-[ext_resource type="Script" path="res://equipManager.gd" id="10_lremx"]
+[ext_resource type="Script" path="res://Scripts/horns/ibex_horn.gd" id="10_envsg"]
+[ext_resource type="Script" path="res://Scripts/equipManager.gd" id="10_lremx"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
@@ -55,6 +55,9 @@ shape = SubResource("ConcavePolygonShape3D_x4l04")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.437, 2.04142, 74.5793)
 script = ExtResource("3_gfxu1")
 
+[node name="IbexHorn" type="Node" parent="Player"]
+script = ExtResource("10_envsg")
+
 [node name="EnemyRam" parent="." instance=ExtResource("10_vx0s0")]
 transform = Transform3D(-0.999955, 0, 0.00951189, 0, 1, 0, -0.00951189, 0, -0.999955, 24.4507, 0.0927792, 21.205)
 script = ExtResource("6_ksiss")
@@ -85,6 +88,3 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("10_lremx")
-
-[node name="IbexHorn" type="Node" parent="EquipManager"]
-script = ExtResource("10_envsg")
