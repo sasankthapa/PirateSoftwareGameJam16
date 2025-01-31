@@ -17,6 +17,7 @@ var _is_deer: bool = true
 signal ram
 signal charge_change
 signal equip_horn(hornName:Horn)
+signal collectHorn(hornName:Horn)
 signal unequip_horn(hornName:Horn)
 
 #Horns
@@ -155,5 +156,5 @@ func _on_area_3d_body_entered(body: Node3D) -> void: #ok, we handle every collis
 		handle_attack(body as CharacterBody3D)
 		print("ah its a bad dude")
 	elif body.is_in_group("horn"):
-		equip_horn.emit(body as Horn)
+		collectHorn.emit(body as Horn)
 	pass # Replace with function body.

@@ -22,6 +22,7 @@ func _ready() -> void:
 	
 	player.unequip_horn.connect(_on_unequip_horn)
 	player.equip_horn.connect(_on_equip_horn)
+	player.collectHorn.connect(_on_collect_horn)
 	
 	
 func _on_equip_horn(hornName):
@@ -33,3 +34,6 @@ func _on_unequip_horn(hornName):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_collect_horn(hornName:Horn):
+	hornName.collected = true
