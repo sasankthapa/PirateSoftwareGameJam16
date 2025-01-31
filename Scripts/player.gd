@@ -9,8 +9,8 @@ class_name Player
 var _last_movement_direction = Vector3.FORWARD
 var _facing_direction = Vector3.FORWARD
 
-var _single_jump: bool = false
-var _is_deer: bool = false
+var _single_jump: bool
+var _is_deer: bool = true
 
 signal ram
 signal charge_change
@@ -29,6 +29,7 @@ func _ready() -> void:
 	super()
 	TAG = "PLAYER"
 	animationTree.play("Deer_RunCycle")
+	_single_jump = false
 	
 
 func _physics_process(delta):
@@ -37,8 +38,10 @@ func _physics_process(delta):
 
 
 func process_player_physics(delta):
-	if Input.is_action_pressed("Jump") and is_on_floor(): # use space button to chargeVal
+	if Input.is_action_just_pressed("Jump"): # use space button to chargeVal
 		jump()
+	print(_single_jump)
+	
 		
 	if Input.is_action_pressed("Centre"):
 		align_camera_to_player()
@@ -70,7 +73,22 @@ func process_player_physics(delta):
 	if Input.is_action_just_pressed("Equip"):
 		horn_1 = equipMan.ibexHorn
 		
+
+func jump():
+	if not _is_deer:
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+	else:
+		if is_on_floor():
+			velocity.y = JUMP_VELOCITY
+			_single_jump = true
+			print(_single_jump)
+		elif _single_jump:
+			velocity.y = JUMP_VELOCITY
+			_single_jump = false
+			
 		
+
 func ram_speed(delta):
 	CHARGE_VAL = lerp(CHARGE_VAL, 0.0, 2*delta)
 	charge_change.emit(CHARGE_VAL)
