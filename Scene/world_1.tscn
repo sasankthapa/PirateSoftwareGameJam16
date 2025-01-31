@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=16 format=3 uid="uid://c76byv85cp5x"]
 
 [ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
 [ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="6_ksiss"]
+[ext_resource type="Script" path="res://Scripts/ibex_horn.gd" id="10_envsg"]
+[ext_resource type="Script" path="res://equipManager.gd" id="10_lremx"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7x2ak"]
@@ -75,3 +77,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.156, 0, 30.236)
 [node name="Pause_Menu" parent="." instance=ExtResource("5_j448v")]
 process_mode = 3
 visible = false
+
+[node name="EquipManager" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_lremx")
+
+[node name="IbexHorn" type="Node" parent="EquipManager"]
+script = ExtResource("10_envsg")

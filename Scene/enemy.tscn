@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://mj1lf4vs855t"]
+[gd_scene load_steps=10 format=4 uid="uid://mj1lf4vs855t"]
 
 [ext_resource type="Script" path="res://Scripts/player_dep.gd" id="1_1kcwu"]
+[ext_resource type="Script" path="res://equipManager.gd" id="2_opbwv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nosyu"]
 size = Vector3(1, 1, 2.06152)
@@ -89,5 +90,12 @@ one_shot = true
 process_callback = 0
 wait_time = 2.0
 one_shot = true
+
+[node name="EquipManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_opbwv")
 
 [connection signal="timeout" from="dodge_cooldown" to="." method="_on_dodge_cooldown_timeout"]

@@ -3,6 +3,7 @@ extends Creature
 class_name Enemy
 
 var target: Player
+var hostile: bool
 
 func handle_movement(delta: float) -> void:
 	pass
@@ -11,6 +12,7 @@ func handle_movement(delta: float) -> void:
 func _ready() -> void:
 	await get_tree().process_frame
 	target = get_tree().get_first_node_in_group("player")
+	hostile = false
 
 
 

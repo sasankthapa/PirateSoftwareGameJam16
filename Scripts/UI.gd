@@ -25,7 +25,6 @@ func _ready() -> void:
 	player.hp_changed.connect(_on_player_hp_change)
 	player.charge_change.connect(_on_charge_change)
 	
-
 func _on_player_hp_change(new_value):
 	health_bar.value=new_value
 	

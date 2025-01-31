@@ -12,10 +12,14 @@ var BASE_SPEED: float = 50
 var BASE_ACCELERATION: float = 100
 var BASE_JUMP_VELOCITY : float = 20
 var BASE_ROTATION_SPEED : float = 10
+var BASE_DODGE_SPEED: float = 30
 
 var BASE_CHARGE_VAL: float = 0
 var BASE_CHARGE_SPEED:float = 2
 var BASE_MAX_CHARGE: float = 5
+
+var TAG = "Creature"
+
 
 ## Current States
 var HP: float
@@ -27,6 +31,7 @@ var SPEED: float
 var ACCELERATION:float 
 var JUMP_VELOCITY : float 
 var ROTATION_SPEED : float
+var DODGE_SPEED: float
 
 var CHARGE_VAL: float
 var CHARGE_SPEED:float
@@ -44,6 +49,8 @@ var is_rolling = false
 var hp_modifiers: Dictionary = {}
 var speed_modifiers: Dictionary = {}
 var charge_speed_modifiers: Dictionary = {}
+var attack_modifiers: Dictionary = {}
+var defense_modifiers: Dictionary = {}
 
 
 
@@ -72,6 +79,7 @@ func intialize():
 	
 	SPEED = BASE_SPEED
 	ACCELERATION= BASE_ACCELERATION
+	DODGE_SPEED = BASE_DODGE_SPEED
 	
 	JUMP_VELOCITY = BASE_JUMP_VELOCITY
 	ROTATION_SPEED = BASE_ROTATION_SPEED
@@ -99,6 +107,8 @@ func _get_modifier_dict(stat_name: String) -> Dictionary:
 	match stat_name:
 		"MAX_HP": return hp_modifiers
 		"SPEED": return speed_modifiers
+		"ATTACK": return attack_modifiers
+		"DEFENSE": return defense_modifiers
 		"CHARGE_SPEED": return charge_speed_modifiers
 		_: return {}
 
@@ -107,6 +117,8 @@ func _get_base_stat(stat_name: String) -> float:
 	match stat_name:
 		"MAX_HP": return BASE_MAX_HP
 		"SPEED": return BASE_SPEED
+		"ATTACK": return BASE_ATTACK
+		"DEFENSE": return BASE_DEFENSE
 		"CHARGE_SPEED": return BASE_CHARGE_SPEED
 		_: return 0.0
 
@@ -115,6 +127,8 @@ func _get_current_stat(stat_name: String) -> float:
 	match stat_name:
 		"MAX_HP": return MAX_HP
 		"SPEED": return SPEED
+		"ATTACK": return ATTACK
+		"DEFENSE": return DEFENSE
 		"CHARGE_SPEED": return CHARGE_SPEED
 		_: return 0.0
 
@@ -123,6 +137,8 @@ func _set_current_stat(stat_name: String, value: float):
 	match stat_name:
 		"MAX_HP": MAX_HP = value
 		"SPEED": SPEED = value
+		"ATTACK": ATTACK = value
+		"DEFENSE": DEFENSE = value
 		"CHARGE_SPEED": CHARGE_SPEED = value
 	
 
@@ -156,7 +172,7 @@ func _recalculate_stat(stat_name: String):
 
 ### Actions
 func jump():
-	if is_on_floor:
+	if is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
 	
@@ -170,15 +186,53 @@ func charge(delta):
 		emit_signal("charged")
 	
 func discharge():
+	ramem()
+
+func ramem():
 	is_ramming = true
 	is_charging = false
 	remove_modifier("SPEED", "charging")
 	add_modifier("SPEED", "charge", CHARGE_VAL * BASE_SPEED , false)
-
 	
-func dodge():
+	
+	
+func dodge_left():
+	var left = body.global_transform.basis.x #dont ask me why its "-" smh
+	left.y = 0
+	left = left.normalized()
+	is_dodging = true
+	if is_on_floor() && !is_ramming && !is_charging:
+			#&& dodge_cooldown.is_stopped()
+		velocity = left * DODGE_SPEED
+		move_and_slide()
+		await get_tree().create_timer(1).timeout
+		is_dodging = false 
+
+
+
+func dodge_right():
 	pass
 	
+func dodge_roll(dir:String):
+	var right = -body.global_transform.basis.x #dont ask me why its "-" smh
+	right.y = 0
+	right = right.normalized()
+	is_dodging = true
+	#dodge_time.start() # stop movement in directions
+	#dodge_cooldown.start() # cooldown for dodge
+
+		
+	
+
+	
+func attack():
+	pass
+	
+func block():
+	pass
+	
+
+## Stat changing functions	
 func change_HP(new_value) -> void:
 	var old_value = HP
 	HP = new_value

@@ -3,24 +3,30 @@ class_name Player
 
 @onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gpu_particles_3d = $body/GPUParticles3D
+@onready var equipMan = get_node("/root/World1/EquipManager")
 
 
 var _last_movement_direction = Vector3.FORWARD
 var _facing_direction = Vector3.FORWARD
 
+var _single_jump: bool = false
 
 signal ram
 signal charge_change
+signal equip_horn(hornName:Horn)
+signal unequip_horn(hornName:Horn)
 
 #Horns
-var horn_1 : Horn= null
+var horn_1 : Horn = null
 var horn_2 : Horn = null
 var horn_3 : Horn = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("player")
+	BASE_MAX_HP = 1000
 	super()
+	TAG = "PLAYER"
 	
 	
 
@@ -30,7 +36,7 @@ func _physics_process(delta):
 
 
 func process_player_physics(delta):
-	if Input.is_action_pressed("Jump"): # use space button to chargeVal
+	if Input.is_action_pressed("Jump") and is_on_floor(): # use space button to chargeVal
 		jump()
 		
 	if Input.is_action_pressed("Centre"):
@@ -55,7 +61,15 @@ func process_player_physics(delta):
 	if Input.is_action_just_released("SHIFT_KEY"):
 		gpu_particles_3d.speed_scale = 4
 		discharge()
-
+	
+	if Input.is_action_pressed("DODGE"):
+		equip_horn.emit(horn_1)
+		#dodge_left()
+		
+	if Input.is_action_just_pressed("Equip"):
+		horn_1 = equipMan.ibexHorn
+		
+		
 func ram_speed(delta):
 	CHARGE_VAL = lerp(CHARGE_VAL, 0.0, 2*delta)
 	charge_change.emit(CHARGE_VAL)
