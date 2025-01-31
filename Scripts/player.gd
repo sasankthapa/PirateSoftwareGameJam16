@@ -166,7 +166,7 @@ func handle_attack(enemy_body:CharacterBody3D):
 		enemy_body.take_damage(calcDamage(self, enemy_body))
 	
 	
-func _on_area_3d_body_entered(body: Node3D) -> void: #ok, we handle every collision here for now.
+func _on_area_3d_body_entered(body: Node3D) -> void: #ok, we handlwe every collision here for now.
 	if body.is_in_group("enemy"):
 		print(body.HP)
 		print(body.ATTACK)

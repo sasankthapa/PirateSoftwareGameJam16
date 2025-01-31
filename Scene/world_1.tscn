@@ -136,4 +136,5 @@ autoplay = true
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamPlaylist_3ligo")
+volume_db = -15.848
 autoplay = true
