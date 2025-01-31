@@ -40,6 +40,69 @@ text = "Options"
 layout_mode = 2
 text = "Quit to Main Menu"
 
+[node name="passive" type="Button" parent="."]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 410.0
+offset_right = 89.0
+offset_bottom = 450.0
+
+[node name="Attack" type="Button" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 363.0
+offset_right = 129.0
+offset_bottom = 403.0
+
+[node name="Defense" type="Button" parent="."]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 409.0
+offset_right = 170.0
+offset_bottom = 449.0
+
+[node name="Ibex" type="Button" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 277.0
+offset_right = 77.0
+offset_bottom = 317.0
+
+[node name="Deer" type="Button" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 276.0
+offset_right = 131.0
+offset_bottom = 316.0
+
+[node name="Elk" type="Button" parent="."]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 275.0
+offset_right = 189.0
+offset_bottom = 315.0
+
+[node name="Bull" type="Button" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 221.0
+offset_right = 76.0
+offset_bottom = 261.0
+
+[node name="Buffalo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 216.0
+offset_right = 191.0
+offset_bottom = 256.0
+
+[node name="Impala" type="Button" parent="."]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 217.0
+offset_right = 133.0
+offset_bottom = 257.0
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -160,7 +160,7 @@ func align_camera_to_player():
 		# Apply to twist_pivot instead of body
 		camera.rotation.y = target_rot
 
-func handle_attack(enemy_body:Enemy):
+func handle_attack(enemy_body:CharacterBody3D):
 	if(enemy_body.has_method("handle_knockback")):
 		enemy_body.handle_knockback(velocity.normalized(),30.0)
 		enemy_body.take_damage(calcDamage(self, enemy_body))
