@@ -1,10 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://mj1lf4vs855t"]
+[gd_scene load_steps=11 format=4 uid="uid://mj1lf4vs855t"]
 
 [ext_resource type="Script" path="res://Scripts/player_dep.gd" id="1_1kcwu"]
 [ext_resource type="Script" path="res://Scripts/equipManager.gd" id="2_opbwv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_nosyu"]
-size = Vector3(1, 1, 2.06152)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ttaxh"]
 resource_name = "Material.001"
@@ -57,14 +54,16 @@ gravity = Vector3(0, 0, 0)
 [sub_resource type="PlaneMesh" id="PlaneMesh_nrgta"]
 size = Vector2(1, 1)
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nosyu"]
+size = Vector3(1.5636, 1.45544, 2.06152)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ofb5"]
+size = Vector3(1.60107, 2.76038, 3.58679)
+
+[node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_1kcwu")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 0, 1.5, 0)
-shape = SubResource("BoxShape3D_nosyu")
-
-[node name="body" type="Node3D" parent="."]
+[node name="body" type="CharacterBody3D" parent="."]
 transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 5.36229, 0)
 
 [node name="body" type="MeshInstance3D" parent="body"]
@@ -80,6 +79,10 @@ lifetime = 0.5
 speed_scale = 4.02
 process_material = SubResource("ParticleProcessMaterial_1c8aq")
 draw_pass_1 = SubResource("PlaneMesh_nrgta")
+
+[node name="bodyCollision" type="CollisionShape3D" parent="body"]
+transform = Transform3D(-4.37107e-08, 0, -1, 0, 1, 0, 1, 0, -4.37107e-08, -1.23178e-08, -0.0527499, 0.281799)
+shape = SubResource("BoxShape3D_nosyu")
 
 [node name="dodge_time" type="Timer" parent="."]
 process_callback = 0
@@ -97,5 +100,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_opbwv")
+
+[node name="floor collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00219727, 1.3943, -2.04236)
+shape = SubResource("BoxShape3D_1ofb5")
 
 [connection signal="timeout" from="dodge_cooldown" to="." method="_on_dodge_cooldown_timeout"]

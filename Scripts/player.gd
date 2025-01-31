@@ -10,6 +10,7 @@ var _last_movement_direction = Vector3.FORWARD
 var _facing_direction = Vector3.FORWARD
 
 var _single_jump: bool = false
+var _is_deer: bool = false
 
 signal ram
 signal charge_change
@@ -117,3 +118,9 @@ func align_camera_to_player():
 		var target_rot = Vector3.BACK.signed_angle_to(body_forward, Vector3.UP)
 		# Apply to twist_pivot instead of body
 		camera.rotation.y = target_rot
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("meowmeowmewomemowmewo")
+	if is_in_group("enemy"):
+		print("ah its a bad dude")
+	pass # Replace with function body.

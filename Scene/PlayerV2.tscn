@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b5ai527yj2ch2"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2v7et"]
-[ext_resource type="PackedScene" uid="uid://c2pyn5fnr2tj1" path="res://Assets_in_Progress/DeerCreature.glb" id="2_ym4an"]
+[ext_resource type="PackedScene" uid="uid://4jhfr1awtoff" path="res://Assets_in_Progress/DeerCreature.glb" id="2_ym4an"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_r2u5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sp07c"]
@@ -16,7 +16,7 @@ gravity = Vector3(0, 0, 0)
 size = Vector2(1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tbnhf"]
-size = Vector3(3.11578, 2.50049, 3.10571)
+size = Vector3(3.11578, 9.61029, 3.10571)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6vuo2"]
 
@@ -29,6 +29,7 @@ script = ExtResource("1_2v7et")
 [node name="body" type="Node3D" parent="."]
 
 [node name="DeerCreature" parent="body" instance=ExtResource("2_ym4an")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.425901, 0.517455, 0.582474)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="body"]
 transform = Transform3D(1, 0, 0, 0, 0.999351, -0.0360332, 0, 0.0360332, 0.999351, 0, -1.55093, -1.05699)
@@ -39,8 +40,11 @@ speed_scale = 4.02
 process_material = SubResource("ParticleProcessMaterial_gvg33")
 draw_pass_1 = SubResource("PlaneMesh_t2kiv")
 
-[node name="HornCollision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0330505, 8.07907, 2.13111)
+[node name="Area3D" type="Area3D" parent="body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0330505, 8.26358, 3.6828)
+
+[node name="HornCollision" type="CollisionShape3D" parent="body/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.298331, -2.25693, -0.47323)
 shape = SubResource("BoxShape3D_tbnhf")
 
 [node name="TwistPivot" type="Node3D" parent="."]
@@ -62,3 +66,5 @@ script = ExtResource("3_r2u5f")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.0178538, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178538, -0.00979549, 1.12494, 1.28189)
 shape = SubResource("BoxShape3D_nyi74")
+
+[connection signal="body_entered" from="body/Area3D" to="." method="_on_area_3d_body_entered"]

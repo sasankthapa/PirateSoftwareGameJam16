@@ -15,6 +15,7 @@ func _process(delta: float) -> void:
 			pause_menu.show()
 			get_tree().paused = true
 			paused = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			pause_menu.hide()
 			get_tree().paused = false
