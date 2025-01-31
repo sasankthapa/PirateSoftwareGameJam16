@@ -36,6 +36,7 @@ ambient_light_color = Color(0.688982, 0.88516, 0.989466, 1)
 ambient_light_energy = 0.33
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_3ligo"]
+shuffle = true
 stream_count = 9
 stream_0 = ExtResource("15_8saoo")
 stream_1 = ExtResource("16_6gbos")
