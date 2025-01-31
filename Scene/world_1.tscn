@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
 [ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="3_gfxu1"]
-[ext_resource type="PackedScene" uid="uid://be0w2144133jd" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
+[ext_resource type="PackedScene" uid="uid://c2pyn5fnr2tj1" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
 [ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="6_ksiss"]
