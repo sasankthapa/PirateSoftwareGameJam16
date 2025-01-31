@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b5ai527yj2ch2"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_2v7et"]
-[ext_resource type="PackedScene" uid="uid://4jhfr1awtoff" path="res://Assets_in_Progress/DeerCreature.glb" id="2_ym4an"]
+[ext_resource type="PackedScene" uid="uid://c034imcwmkyi2" path="res://Assets_in_Progress/Player_Deer.tscn" id="2_5x83v"]
 [ext_resource type="Script" path="res://Scripts/camera.gd" id="3_r2u5f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sp07c"]
@@ -28,8 +28,7 @@ script = ExtResource("1_2v7et")
 
 [node name="body" type="Node3D" parent="."]
 
-[node name="DeerCreature" parent="body" instance=ExtResource("2_ym4an")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.425901, 0.517455, 0.582474)
+[node name="PlayerDeer" parent="body" instance=ExtResource("2_5x83v")]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="body"]
 transform = Transform3D(1, 0, 0, 0, 0.999351, -0.0360332, 0, 0.0360332, 0.999351, 0, -1.55093, -1.05699)

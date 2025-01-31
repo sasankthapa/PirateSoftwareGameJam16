@@ -4,7 +4,9 @@ class_name Player
 @onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gpu_particles_3d = $body/GPUParticles3D
 @onready var equipMan = get_node("/root/World1/EquipManager")
-@onready var animationTree = $body/DeerCreature/AnimationPlayer
+@onready var animationTree = $body/PlayerDeer/AnimationTree
+@onready var state_machine = animationTree.get("parameters/playback")
+
 
 var _last_movement_direction = Vector3.FORWARD
 var _facing_direction = Vector3.FORWARD
@@ -28,7 +30,8 @@ func _ready() -> void:
 	BASE_MAX_HP = 1000
 	super()
 	TAG = "PLAYER"
-	animationTree.play("Deer_RunCycle")
+	animationTree.active = true
+	state_machine.travel("Deer_Idle")
 	_single_jump = false
 	
 
@@ -60,11 +63,12 @@ func process_player_physics(delta):
 	if Input.is_action_pressed("SHIFT_KEY"):
 		charge(delta)
 		charge_change.emit(CHARGE_VAL)
-		
+		state_machine.travel("Deer_RunCycle")  # Play run animation, might need to switch this one out?
 		
 	if Input.is_action_just_released("SHIFT_KEY"):
 		gpu_particles_3d.speed_scale = 4
 		discharge()
+		state_machine.travel("Deer_Charge") #play charge animation
 	
 	if Input.is_action_pressed("DODGE"):
 		equip_horn.emit(horn_1)
@@ -106,9 +110,14 @@ func handle_movement(delta: float) -> void:
 	var direction = get_camera_oriented_input(input_dir)
 	move_in_direction(direction, delta) 
 		
+	if CHARGE_VAL > 0.01: # Prevent movement animations while charging
+		return
 	# Store last direction input
 	if direction.length() > 0.2:
 		_last_movement_direction=direction	
+		state_machine.travel("Deer_RunCycle") #play run animation
+	else:
+		state_machine.travel("Deer_Idle") #play idle animation
 
 # Transform vector in Camera FoR
 func get_camera_oriented_input(input_dir: Vector2) -> Vector3:
