@@ -4,7 +4,7 @@ class_name Player
 @onready var camera = $TwistPivot/PitchPivot/SpringArm3D/Camera3D
 @onready var gpu_particles_3d = $body/GPUParticles3D
 @onready var equipMan = get_node("/root/World1/EquipManager")
-
+@onready var animationTree = $body/DeerCreature/AnimationPlayer
 
 var _last_movement_direction = Vector3.FORWARD
 var _facing_direction = Vector3.FORWARD
@@ -27,7 +27,7 @@ func _ready() -> void:
 	BASE_MAX_HP = 1000
 	super()
 	TAG = "PLAYER"
-	
+	animationTree.play("Deer_RunCycle")
 	
 
 func _physics_process(delta):

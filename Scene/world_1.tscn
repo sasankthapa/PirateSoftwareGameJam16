@@ -1,13 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://c76byv85cp5x"]
+[gd_scene load_steps=15 format=3 uid="uid://c76byv85cp5x"]
 
-[ext_resource type="PackedScene" uid="uid://bwrn2350dk4mk" path="res://Scene/player.tscn" id="1_ue8en"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="2_88lia"]
 [ext_resource type="PackedScene" uid="uid://dviecswnrthm8" path="res://Assets_in_Progress/HomeLevel_Collision.tscn" id="2_pjo7m"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="3_gfxu1"]
 [ext_resource type="PackedScene" uid="uid://c2pyn5fnr2tj1" path="res://Assets_in_Progress/DeerCreature.glb" id="4_fae0y"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_j448v"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="6_ik6h8"]
 [ext_resource type="Script" path="res://Scripts/newEnemy.gd" id="6_ksiss"]
+[ext_resource type="PackedScene" uid="uid://b5ai527yj2ch2" path="res://Scene/PlayerV2.tscn" id="8_xriv4"]
 [ext_resource type="Script" path="res://Scripts/ibex_horn.gd" id="10_envsg"]
 [ext_resource type="Script" path="res://equipManager.gd" id="10_lremx"]
 [ext_resource type="PackedScene" uid="uid://mj1lf4vs855t" path="res://Scene/enemy.tscn" id="10_vx0s0"]
@@ -51,10 +50,6 @@ mesh = SubResource("PlaneMesh_7x2ak")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x4l04")
 
-[node name="Player" parent="." instance=ExtResource("1_ue8en")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.437, 2.04142, 74.5793)
-script = ExtResource("3_gfxu1")
-
 [node name="EnemyRam" parent="." instance=ExtResource("10_vx0s0")]
 transform = Transform3D(-0.999955, 0, 0.00951189, 0, 1, 0, -0.00951189, 0, -0.999955, 24.4507, 0.0927792, 21.205)
 script = ExtResource("6_ksiss")
@@ -88,3 +83,5 @@ script = ExtResource("10_lremx")
 
 [node name="IbexHorn" type="Node" parent="EquipManager"]
 script = ExtResource("10_envsg")
+
+[node name="Player" parent="." instance=ExtResource("8_xriv4")]
