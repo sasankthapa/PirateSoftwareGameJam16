@@ -1,5 +1,5 @@
 class_name Horn
-extends Node
+extends Node3D
 
 var blocking_power: float
 var damage_dealing_power:float
@@ -19,6 +19,7 @@ var player: Player
 var equipMan: Control
 
 func _ready():
+	add_to_group("horn")
 	await get_tree().process_frame
 	player = get_tree().get_first_node_in_group("player")
 
