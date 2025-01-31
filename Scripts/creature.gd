@@ -231,9 +231,6 @@ func dodge_roll(dir:String):
 	#dodge_time.start() # stop movement in directions
 	#dodge_cooldown.start() # cooldown for dodge
 
-		
-	
-
 	
 func attack():
 	pass
