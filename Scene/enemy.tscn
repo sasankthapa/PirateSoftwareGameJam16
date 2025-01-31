@@ -63,7 +63,7 @@ size = Vector3(1.60107, 2.76038, 3.58679)
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_1kcwu")
 
-[node name="body" type="CharacterBody3D" parent="."]
+[node name="body" type="Node3D" parent="."]
 transform = Transform3D(-3, 0, -2.62268e-07, 0, 3, 0, 2.62268e-07, 0, -3, 0, 5.36229, 0)
 
 [node name="body" type="MeshInstance3D" parent="body"]
