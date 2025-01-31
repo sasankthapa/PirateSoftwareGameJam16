@@ -1,21 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://gtfxwloyf7kx"]
+[gd_scene load_steps=10 format=3 uid="uid://gtfxwloyf7kx"]
 
-[ext_resource type="PackedScene" uid="uid://ds4fs0lwlen21" path="res://Assets_in_Progress/environment_v3.glb" id="1_f62kg"]
+[ext_resource type="PackedScene" uid="uid://b112sgkeki6eu" path="res://Assets_in_Progress/environment_v_3.tscn" id="1_1id8u"]
 [ext_resource type="PackedScene" uid="uid://b5ai527yj2ch2" path="res://Scene/PlayerV2.tscn" id="2_ikm2r"]
 [ext_resource type="PackedScene" uid="uid://ci38xxr56lxkh" path="res://Scene/Menus/HUD.tscn" id="3_pgmic"]
 [ext_resource type="Script" path="res://Scripts/UI.gd" id="4_id167"]
 [ext_resource type="PackedScene" uid="uid://c0ybbylj6udig" path="res://Scene/Menus/pause_menu.tscn" id="5_vb028"]
 [ext_resource type="AudioStream" uid="uid://c60huxj7ra24" path="res://Assets_in_Progress/foley/walk-on-grass-1-291984.mp3" id="6_2b3ov"]
 [ext_resource type="AudioStream" uid="uid://bf0wjs84ba4a2" path="res://Assets_in_Progress/foley/forest-sounds.mp3" id="7_muhm5"]
+[ext_resource type="PackedScene" uid="uid://yy46yjk7hneq" path="res://Scene/sheep.tscn" id="8_lpm48"]
+
+[sub_resource type="Environment" id="Environment_5nh0b"]
+ambient_light_source = 2
+ambient_light_color = Color(0.688982, 0.88516, 0.989466, 1)
+ambient_light_energy = 1.95
 
 [node name="World1Final" type="Node3D"]
 
-[node name="environment_v3" parent="." instance=ExtResource("1_f62kg")]
+[node name="environment" parent="." instance=ExtResource("1_1id8u")]
 
 [node name="PlayerV2" parent="." instance=ExtResource("2_ikm2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.4326, 140.877)
 
 [node name="AudioListener3D" type="AudioListener3D" parent="PlayerV2"]
+visible = false
 current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="PlayerV2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 81.6444, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -33,11 +44,69 @@ visible = false
 
 [node name="run_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_2b3ov")
-volume_db = -16.365
+volume_db = -52.889
 
 [node name="forest_sounds" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_muhm5")
 volume_db = -37.0
 autoplay = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.555396, -0.831586, 0, 0.831586, -0.555396, -10.2415, 378.94, 401.197)
+visible = false
+light_energy = 5.0
+shadow_enabled = true
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5nh0b")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Sheep8" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 178.95, 396.944)
+
+[node name="Sheep7" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 178.95, 330.609)
+
+[node name="Sheep6" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 178.95, 311.079)
+
+[node name="Sheep5" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 178.95, 344.656)
+
+[node name="Sheep4" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 178.95, 364.056)
+
+[node name="Sheep3" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 178.95, 381.679)
+
+[node name="Sheep2" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48.3927, 178.95, 295.37)
+
+[node name="Sheep" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.5314, 178.95, 295.37)
+
+[node name="Sheep9" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.602, 178.95, 396.944)
+
+[node name="Sheep10" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.602, 178.95, 330.609)
+
+[node name="Sheep11" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.602, 178.95, 311.079)
+
+[node name="Sheep12" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.602, 178.95, 344.656)
+
+[node name="Sheep13" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.602, 178.95, 364.056)
+
+[node name="Sheep14" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -129.602, 178.95, 381.679)
+
+[node name="Sheep15" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.2091, 178.95, 295.37)
+
+[node name="Sheep16" parent="Node3D" instance=ExtResource("8_lpm48")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -181.133, 178.95, 295.37)
